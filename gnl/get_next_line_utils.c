@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 18:17:24 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/05/21 15:26:53 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/05/21 17:04:34 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t        ft_strlen(const char *s)
     i = 0;
     if (!s)
         return (0);
-    while (s[i] != '\0')
+    while (s[i])
         i++;
     return (i);
 }
@@ -29,7 +29,7 @@ void    *ft_memcpy(void *dst, const void *src, size_t n)
     if (!dst && !src)
         return ((void *)0);
     while (n-- > 0)
-        *((unsigned char *)dst + n) = *((unsigned char *)src + n);
+        *(dst + n) = *((char *)src + n);
     return (dst);
 }
 
@@ -52,6 +52,7 @@ char    *my_strjoin(char const *s1, char const *s2)
 	free((char *)s1);
     return (ret);
 }
+
 char    *my_strndup(const char *s1, size_t idx)
 {
     char    *ret;
@@ -63,11 +64,7 @@ char    *my_strndup(const char *s1, size_t idx)
     if ((ret = (char *)malloc(len + 1)) == 0)
         return (0);
     *(ret + len) = 0;
-    while (i < len)
-    {
-        *(ret + i) = *(s1 + i);
-        i++;
-    }
+	ft_memcpy(ret, s1, len);
     return (ret);
 }
 
