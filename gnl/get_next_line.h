@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 18:17:30 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/05/21 17:02:42 by kyujlee          ###   ########.fr       */
+/*   Created: 2021/05/23 19:36:47 by kyujlee           #+#    #+#             */
+/*   Updated: 2021/05/23 19:48:15 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,20 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
+
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2 
+#  define BUFFER_SIZE 2
 # endif
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 256 
+#  define OPEN_MAX 256
 # endif
 
-int				get_next_line(int fd, char **line);
-
-char	*my_strndup(const char *s1, size_t idx);
+int		get_next_line(int fd, char **line);
+char	*my_strndup(const char *s1, size_t idx, int *flag);
 size_t	my_strnewline(char *s);
-void        *ft_memmove(void *dst, const void *src, size_t len);
-char    *my_strjoin(char const *s1, char const *s2);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+char	*my_strjoin(char const *s1, char const *s2, int *flag);
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
