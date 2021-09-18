@@ -1,3 +1,5 @@
+
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
@@ -31,4 +33,3 @@ int main()
     char c = 'k';
     ft_printf("hello%c",c);
 }
-
