@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 00:38:07 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/05/07 10:35:41 by kyujlee          ###   ########.fr       */
+/*   Created: 2021/09/21 11:48:58 by kyujlee           #+#    #+#             */
+/*   Updated: 2021/09/21 13:35:17 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-#include "libft.h"
-
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	print_char(va_list ap)
 {
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	char	c;
+
+	c = va_arg(ap, int);
+	return (ft_putchar(c));
 }
+
+int	print_str(va_list ap)
+{
+	int		idx;
+	char	*s;
+
+	s = va_arg(ap, char *);
+	idx = 0;
+	return (ft_putstr(s));
+}	

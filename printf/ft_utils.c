@@ -1,21 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 13:26:41 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/05/12 00:22:37 by kyujlee          ###   ########.fr       */
+/*   Created: 2021/09/21 11:46:19 by kyujlee           #+#    #+#             */
+/*   Updated: 2021/09/21 14:15:39 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	cnt_digits(int n)
+int ft_putchar(char c)
 {
-	if (n == -2147483648)
-		return (10);
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_putstr(char *s)
+{
+	int ret;
+
+	ret = 0;
+	if (!s)
+		return (-1);
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+		ret++;
+	}
+	return (ret);
+}
+
+static int	cnt_digits(long long n)
+{
+	//if (n == -2147483648)
+	//	return (10);
 	if (n < 0)
 		n *= -1;
 	if (n == 0)
@@ -39,7 +61,7 @@ static void	get_digit(int *sign, long long *i, int *digit)
 		*digit = cnt_digits(*i);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long long n)
 {
 	char		*ret;
 	int			digit;
