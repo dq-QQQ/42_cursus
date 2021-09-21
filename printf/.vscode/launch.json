@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "debug ft_printf in cluster mac",
+        "type": "cppdbg",
+        "request": "launch",
+        "targetArchitecture": "x86_64",
+        "program": "${fileDirname}/ft_printf",
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "args": [],
+        "externalConsole": false,
+        "MIMode": "lldb",
+        "preLaunchTask": "Build ft_printf"
+      }
+    ]
+  }
