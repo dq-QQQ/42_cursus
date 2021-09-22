@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:57:50 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/21 16:01:45 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/22 16:51:38 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -58,5 +58,9 @@ int ft_printf(const char *str, ...)
 int main()
 {
 	int a = 1;
-	ft_printf("%p\n", &a);
+	int b,c;
+	b=printf("%p\n" , &a);
+	c=ft_printf("%p\n", &a);
+
+	printf ("%d and %d", b ,c);
 }
