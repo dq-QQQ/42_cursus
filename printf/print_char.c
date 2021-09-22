@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:48:58 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/21 13:35:17 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:08:49 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -25,6 +25,8 @@ int	print_str(va_list ap)
 	char	*s;
 
 	s = va_arg(ap, char *);
+	if (s == NULL)
+		return (ft_putstr("(null)"));
 	idx = 0;
 	return (ft_putstr(s));
 }	

@@ -6,16 +6,17 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:43:46 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/22 16:49:25 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:19:11 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int		get_hexdigit(unsigned long long	n){
+static int	get_hexdigit(unsigned long long	n)
+{
 	int	ret;
 
 	ret = 1;
-	while (n > 16)
+	while (n > 15)
 	{
 		n /= 16;
 		ret++;
@@ -23,10 +24,10 @@ int		get_hexdigit(unsigned long long	n){
 	return (ret);
 }
 
-
-char	*ft_i_to_h_to_a(unsigned long long n, char format){
-	char *ret;
-	int cnt;
+char	*ft_i_to_h_to_a(unsigned long long n, char format)
+{
+	char	*ret;
+	int		cnt;
 
 	cnt = get_hexdigit(n);
 	ret = (char *)malloc(cnt + 1);

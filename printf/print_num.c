@@ -6,40 +6,59 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 13:20:14 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/22 16:49:42 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:11:13 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
-#include <stdio.h>
 
-int print_dec(va_list ap){
-	int tmp;
+int	print_dec(va_list ap)
+{
+	int		ret;
+	int		tmp;
+	char	*str;
 
 	tmp = va_arg(ap, int);
-	return (ft_putstr(ft_itoa(tmp)));
+	str = ft_itoa(tmp);
+	ret = ft_putstr(str);
+	free(str);
+	return (ret);
 }
 
-int print_u_dec(va_list ap){
-	unsigned int tmp;
+int	print_u_dec(va_list ap)
+{
+	int				ret;
+	unsigned int	tmp;
+	char			*str;
 
 	tmp = va_arg(ap, unsigned int);
-	return (ft_putstr(ft_itoa(tmp)));
+	str = ft_itoa(tmp);
+	ret = ft_putstr(str);
+	free(str);
+	return (ret);
 }
 
-int print_hex(va_list ap, char format){
-	unsigned int tmp;
-	int ret;
+int	print_hex(va_list ap, char format)
+{
+	unsigned int	tmp;
+	int				ret;
+	char			*str;
 
-	ret = 0;
 	tmp = va_arg(ap, unsigned int);
-	return (ft_putstr(ft_i_to_h_to_a(tmp, format)));
+	str = ft_i_to_h_to_a(tmp, format);
+	ret = ft_putstr(str);
+	free(str);
+	return (ret);
 }
 
-int print_addr(va_list ap){
-	int ret;
-	unsigned long long tmp;
+int	print_addr(va_list ap)
+{
+	int					ret;
+	unsigned long long	tmp;
+	char				*str;
 
 	tmp = (unsigned long long)va_arg(ap, void *);
-	ret = ft_putstr("0x") + ft_putstr(ft_i_to_h_to_a(tmp, 'p'));
+	str = ft_i_to_h_to_a(tmp, 'p');
+	ret = ft_putstr("0x") + ft_putstr(str);
+	free(str);
 	return (ret);
 }

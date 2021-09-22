@@ -6,13 +6,13 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:46:19 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/21 14:15:39 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:18:52 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -20,7 +20,7 @@ int ft_putchar(char c)
 
 int	ft_putstr(char *s)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (!s)
@@ -36,8 +36,6 @@ int	ft_putstr(char *s)
 
 static int	cnt_digits(long long n)
 {
-	//if (n == -2147483648)
-	//	return (10);
 	if (n < 0)
 		n *= -1;
 	if (n == 0)
@@ -61,7 +59,7 @@ static void	get_digit(int *sign, long long *i, int *digit)
 		*digit = cnt_digits(*i);
 }
 
-char		*ft_itoa(long long n)
+char	*ft_itoa(long long n)
 {
 	char		*ret;
 	int			digit;
@@ -71,8 +69,7 @@ char		*ft_itoa(long long n)
 	i = n;
 	sign = 1;
 	get_digit(&sign, &i, &digit);
-	if ((ret = (char *)malloc(digit + 1)) == 0)
-		return (0);
+	ret = (char *)malloc(digit + 1);
 	*(ret + digit) = 0;
 	digit--;
 	while (digit >= 0)
