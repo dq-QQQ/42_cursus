@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:57:50 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/22 18:16:33 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/26 14:41:38 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -28,7 +28,7 @@ static int	format_handler(va_list ap, char format)
 	else if (format == 'p')
 		return (print_addr(ap));
 	else
-		return (0);
+		return (-1);
 }
 
 int	ft_printf(const char *str, ...)
@@ -45,7 +45,10 @@ int	ft_printf(const char *str, ...)
 		if (str[idx] != '%')
 			ret += ft_putchar(str[idx]);
 		else
-			ret += format_handler(ap, str[++idx]);
+		{
+			if (format_handler(ap, str[++idx]) == -1)
+				return (-1);
+			ret += format_handler(ap, str[idx]);
 		idx++;
 	}
 	va_end(ap);

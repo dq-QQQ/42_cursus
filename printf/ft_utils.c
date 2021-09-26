@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:46:19 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/22 18:18:52 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/26 14:45:37 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*ft_itoa(long long n)
 	sign = 1;
 	get_digit(&sign, &i, &digit);
 	ret = (char *)malloc(digit + 1);
+	if (!ret)
+		return ('\0');
 	*(ret + digit) = 0;
 	digit--;
 	while (digit >= 0)

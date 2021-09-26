@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:43:46 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/22 18:19:11 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/26 14:46:32 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -31,6 +31,8 @@ char	*ft_i_to_h_to_a(unsigned long long n, char format)
 
 	cnt = get_hexdigit(n);
 	ret = (char *)malloc(cnt + 1);
+	if (!ret)
+		return ('\0');
 	ret[cnt] = '\0';
 	while (--cnt >= 0)
 	{
