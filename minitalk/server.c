@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:24:11 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/27 15:23:50 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/09/27 15:35:37 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <stdio.h>
 
 void sig_handler(int signum){
-	static  unsigned char	bit ;
-	static	int				bit_num;
+	static  unsigned char	byte ;
+	static	int				bit_idx;
 
 	if (signum == SIGUSR1)
-		bit += 1 << (7 - bit_num);
-	if (++bit_num == 8)
+		byte += 1 << (7 - bit_idx);
+	if (++bit_idx == 8)
 	{
-		if (bit == '\0')
+		if (byte == '\0')
 			write(1, "\n", 1);
-		write(1, &bit, 1);
-		bit_num = 0;
-		bit = 0;
+		write(1, &byte, 1);
+		bit_idx = 0;
+		byte = 0;
 	}
 }
 
