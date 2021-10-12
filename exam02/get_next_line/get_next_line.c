@@ -1,85 +1,75 @@
 #include "get_next_line.h"
 
-int ft_strlen(char *str){
-	int ret = 0;
-	while (str[ret])
-		ret++;
-	return  ret;
+char *ft_emptystr(){
+	char *ret;
+
+	ret = (char *)malloc(sizeof(char) + 1);
+	if (ret == NULL)
+		return NULL;
+	
+	ret[0] = '\0';
+	
+	return ret;
 }
 
-char *ft_strndup(char *str, int size){
+char *ft_strcjoin(char *str, char c){
 	char *ret;
-	int i = 0;
+	int len;
+	int i = -1;
 
-	ret = (char *)malloc(sizeof(char) * size + 1);
-	ret[size] = '\0';
-	while (str[i] && i < size){
+	while (str[len])
+		len++;
+
+	ret = (char *)malloc(sizeof(char) * (len + 2));
+	if (ret == NULL)
+		return NULL;
+	
+	ret[len] = c;
+	ret[len + 1] = '\0';
+	
+	while (++i < len)
 		ret[i] = str[i];
-		i++;
-	}
+
 	return ret;
-}
-
-char *ft_strjoin(char *str1, char *str2){
-	char *ret;
-	int len1 = ft_strlen(str1);
-	int len2 = ft_strlen(str2);
-	int i = 0,j = 0;
-
-	ret = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	*(ret + len1 +len2) = '\0';
-	while (i < len1){
-		ret[i] = str1[i];
-		i++;
-	}
-
-	while (i < len1 + len2){
-		ret[i] = str2[j];
-		i++;
-		j++;
-	}
-	return ret;
-}
-
-char *ft_strchr(char *str, char c){
-	int i = 0;
-
-	while (str[i]){
-		if (str[i] == c){
-			return (str + i);
-		}
-		i++;
-	}
-	if (c == '\0')
-		return(str + i);
-	return NULL;
 }
 
 int get_next_line(char **line){
-	static char *data;
+	char buff[2] = {0, '\0'};
 	char *tmp;
-	int byte;
-	char *nextline;
-	char buff[2] = {0};
 
-	if (data == NULL){
-		data = ft_strndup("", 0);
-		while ((byte = read(0, buff, 1) > 0)){
-			tmp = data;
-			data = ft_strjoin(data, buff);
-			free(tmp);
-		}
+	//while buffer is reading, if error happen then return -1
+	if (read(0,buff,0) == -1)
+		return (-1);
+	
+	//line = "";
+	*line = ft_emptystr();
+
+	//read buffer and return whole string
+	while (read(0, buff, 1) > 0){
+		//if buff character is '\n' return 1
+		if (buff[0] == '\n')
+			return 1;
+		
+		//store current address for free
+		//reassign pointer with new character
+		//lastly free previous pointer
+		tmp = *line;
+		*line = ft_strcjoin(*line, buff[0]);
+		free(tmp);
 	}
 
-	nextline = ft_strchr(data, '\n');
+	return 0;
+}
 
-	if (nextline != NULL){
-		*line = ft_strndup(data, nextline - data);
-		data = nextline + 1;
-		return 1;
+int main(){
+	char *line = NULL;
+	while (get_next_line(&line) > 0){
+		printf ("%s\n", line);
+		free(line);
+		line = NULL;
 	}
-	else{
-		*line = ft_strndup(data, ft_strchr(data, '\0') - data);
-		return 0;
-	}
+	printf ("%s\n", line);
+	free(line);
+	line = NULL;
+	system("leaks a.out > tmp; cat tmp | grep leaks ; rm tmp");
 }
