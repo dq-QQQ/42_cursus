@@ -1,4 +1,4 @@
-#include "solong.h"
+#include "./../Include/solong.h"
 
 
 int	main(void)
@@ -6,7 +6,7 @@ int	main(void)
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char	*relative_path = "./asset/background.xpm";
+	char	*relative_path = "./../asset/background.xpm";
 	int		img_width;
 	int		img_height;
 
