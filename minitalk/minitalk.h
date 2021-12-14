@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:24:25 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/27 14:07:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/12/14 19:13:27 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include <signal.h>
 # include <stdlib.h>
 
-int			ft_atoi(const char *str);
-void    ft_error();
-int ft_strlen(const char *s);
-
-
-void    ft_putnbr(int n);
+int		ft_atoi(const char *str);
+void	ft_error(void);
+int		ft_strlen(const char *s);
+void	ft_putnbr(int n);
 #endif

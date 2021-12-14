@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:24:11 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/27 15:35:37 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/12/14 19:15:23 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
 
-void sig_handler(int signum){
-	static  unsigned char	byte ;
-	static	int				bit_idx;
+void	sig_handler(int signum)
+{
+	static unsigned char	byte;
+	static int				bit_idx;
 
 	if (signum == SIGUSR1)
 		byte += 1 << (7 - bit_idx);
@@ -29,9 +29,7 @@ void sig_handler(int signum){
 	}
 }
 
-
-
-int main()
+int	main(void)
 {
 	ft_putnbr(getpid());
 	write(1, "\n", 1);

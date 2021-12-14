@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:26:20 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/27 14:32:35 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/12/14 19:11:56 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	ft_putstr(char *s)
 	}
 }
 
-void	ft_error(){
+void	ft_error(void)
+{
 	ft_putstr("------ERROR------");
 	exit(1);
 }
-
 
 static void	skip(const char *str, int *i, int *sign)
 {
@@ -41,7 +41,7 @@ static void	skip(const char *str, int *i, int *sign)
 	}
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -53,7 +53,8 @@ int			ft_atoi(const char *str)
 	skip(str, &i, &sign);
 	while ('0' <= str[i] && str[i] <= '9' && str[i])
 	{
-		if ((ret = ret * 10 + str[i] - '0') > 2147483647)
+		ret = ret * 10 + str[i++] - '0';
+		if (ret > 2147483647)
 		{
 			if (ret == 2147483648)
 				return (-2147483648);
@@ -65,7 +66,6 @@ int			ft_atoi(const char *str)
 					return (-1);
 			}
 		}
-		i++;
 	}
 	return (sign * (int)ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:31:42 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/09/27 15:01:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2021/12/14 19:06:01 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	send_bit(int pid, char one_byte)
 
 void	send_msg(int pid, char *msg)
 {
-	int byte;
+	int	byte;
 
 	byte = 0;
 	while (msg[byte])
@@ -43,7 +43,7 @@ void	send_msg(int pid, char *msg)
 	send_bit(pid, '\0');
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	int	pid;
 
