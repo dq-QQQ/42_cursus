@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/14 17:20:13 by kyujlee           #+#    #+#              #
-#    Updated: 2021/12/14 19:04:15 by kyujlee          ###   ########.fr        #
+#    Updated: 2021/12/20 15:58:52 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,12 @@ CLIENT = client
 .PHONY: all
 all : $(SERVER) $(CLIENT)
 
+%.o : %.c
+	gcc -c $<
+
 $(SERVER) : $(SERVER_OBJS)
-	gcc -Wall -Wextra -Werror -o $(SERVER) $(SERVER_SRCS)
+	gcc -Wall -Wextra -Werror -o $(SERVER) $(SERVER_OBJS)
+
 
 $(CLIENT) : $(CLIENT_OBJS)
 	gcc -Wall -Wextra -Werror -o $(CLIENT) $(CLIENT_OBJS) 
