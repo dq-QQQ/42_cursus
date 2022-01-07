@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:47:12 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/10/25 19:55:27 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/07 17:48:31 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 }				t_mlx;
+
+
 
 
 #endif
