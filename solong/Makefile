@@ -1,4 +1,4 @@
-SRCS = Src/solong.c Src/map.c
+SRCS = Src/solong.c Src/map.c Src/get_next_line.c
 
 SRCS_OBJS = $(SRCS:.c=.o)
 

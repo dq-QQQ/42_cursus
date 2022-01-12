@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:47:12 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/12 12:36:37 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/12 13:37:16 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <string.h>
+# include <string.h>
+# include <fcntl.h>
+# include <stdio.h>
+
 
 #define TILES 60
 #define COL 15
@@ -41,11 +44,11 @@ typedef struct s_game
     void *mlx_ptr;
     void *win_ptr;
     t_img img;
-    int map[ROW][COL];
+    char map[ROW][COL];
 } t_game;
 
 
 void map_init(t_game *game);
-
+int get_next_line(char **line, int fd);
 
 #endif
