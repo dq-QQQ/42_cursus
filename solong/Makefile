@@ -1,4 +1,4 @@
-SRCS = Src/solong.c 
+SRCS = Src/solong.c Src/map.c
 
 SRCS_OBJS = $(SRCS:.c=.o)
 
@@ -6,12 +6,16 @@ SRCS_OBJS = $(SRCS:.c=.o)
 .PHONY: all
 all : solong
 
-solong : $(SRCS)
-	gcc -lmlx -framework opengl -framework appkit -o solong $<
+%.o : %.c
+	gcc -c $<
+	mv *.o Src
+
+solong : $(SRCS_OBJS)
+	gcc -lmlx -framework opengl -framework appkit -o solong $^
 
 .PHONY: clean
 clean :
-	rm -rf *.o
+	rm -rf Src/*.o
 
 .PHONY: fclean
 fclean : clean
