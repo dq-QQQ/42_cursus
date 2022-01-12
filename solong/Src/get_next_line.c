@@ -37,26 +37,15 @@ int get_next_line(char **line, int fd){
 	char buff[2] = {0, '\0'};
 	char *tmp;
 
-	//while buffer is reading, if error happen then return -1
 	if (read(fd,buff,0) == -1)
 		return (-1);
-	
-	//line = "";
 	*line = ft_emptystr();
-
-	//read buffer and return whole string
 	while (read(fd, buff, 1) > 0){
-		//if buff character is '\n' return 1
 		if (buff[0] == '\n')
 			return 1;
-		
-		//store current address for free
-		//reassign pointer with new character
-		//lastly free previous pointer
 		tmp = *line;
 		*line = ft_strcjoin(*line, buff[0]);
 		free(tmp);
 	}
-
 	return 0;
 }
