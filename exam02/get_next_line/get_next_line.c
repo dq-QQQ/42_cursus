@@ -33,19 +33,19 @@ char *ft_strcjoin(char *str, char c){
 	return ret;
 }
 
-int get_next_line(char **line){
+int get_next_line(char **line, int fd){
 	char buff[2] = {0, '\0'};
 	char *tmp;
 
 	//while buffer is reading, if error happen then return -1
-	if (read(0,buff,0) == -1)
+	if (read(fd,buff,0) == -1)
 		return (-1);
 	
 	//line = "";
 	*line = ft_emptystr();
 
 	//read buffer and return whole string
-	while (read(0, buff, 1) > 0){
+	while (read(fd, buff, 1) > 0){
 		//if buff character is '\n' return 1
 		if (buff[0] == '\n')
 			return 1;
@@ -63,7 +63,11 @@ int get_next_line(char **line){
 
 int main(){
 	char *line = NULL;
-	while (get_next_line(&line) > 0){
+	int fd;
+
+	fd = open("./42.ber", O_RDONLY);
+
+	while (get_next_line(&line, fd) > 0){
 		printf ("%s\n", line);
 		free(line);
 		line = NULL;

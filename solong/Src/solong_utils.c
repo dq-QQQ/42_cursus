@@ -15,29 +15,28 @@ int	key_check(int keycode, t_game *game)
 	return (0);
 }
 
-int end_program(int flag)
+int	end_program(int flag)
 {
-    char *notify_str;
+	char	*notify_str;
 
-    if (flag == -1)
-        notify_str = "Error\nTry again.";
+	if (flag == -1)
+		notify_str = "Error\nTry again.";
 	else if (flag == 1)
 		notify_str = "You find an exit";
-    else
-        notify_str = "End program at the request of the user.";
-    while (*notify_str)
+	else
+		notify_str = "End program at the request of the user.";
+	while (*notify_str)
 	{
 		write(1, notify_str, 1);
 		notify_str++;
 	}
-    exit(0);
-    return (0);
+	exit(0);
+	return (0);
 }
 
-
-void put_data_to_game(t_game *game, int i, char **line)
+void	put_data_to_game(t_game *game, int i, char **line)
 {
-	int j;
+	int	j;
 
 	j = -1;
 	while (++j < COL)
@@ -46,19 +45,21 @@ void put_data_to_game(t_game *game, int i, char **line)
 	*line = NULL;
 }
 
-void check_valid_map(t_game *game)
+void	check_valid_map(t_game *game)
 {
-	int i;
-	int j;
-	int at_least_one;
+	int	i;
+	int	j;
+	int	at_least_one;
 
 	at_least_one = 0;
 	i = -1;
+	game->collectible = 0;
 	while (++i < ROW)
-    {
-        j = -1;
-        while (++j < COL){
-			if (game->map[i][j] == 'P' ||game->map[i][j] == 'E')
+	{
+		j = -1;
+		while (++j < COL)
+		{
+			if (game->map[i][j] == 'P' || game->map[i][j] == 'E')
 				at_least_one++;
 			else if (game->map[i][j] == 'C')
 				game->collectible++;
