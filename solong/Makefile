@@ -23,7 +23,7 @@ all : solong
 	mv *.o Src
 
 solong : $(SRCS_OBJS)
-	gcc -lmlx -framework opengl -framework appkit -o solong $^
+	gcc -lmlx -framework opengl -framework appkit -o so_long $^
 
 .PHONY: clean
 clean :
