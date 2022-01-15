@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 		game_init(&game);
 		map_init(&game, argv[1]);
 		mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &key_check, &game);
-		mlx_hook(game.win_ptr, 17, 0, &end_program, &game);
+		mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &end_program, &game);
 		mlx_loop(game.mlx_ptr);
 	}
 	end_program(-1);

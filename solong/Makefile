@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 18:12:04 by kyujlee           #+#    #+#              #
-#    Updated: 2022/01/14 14:29:31 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/01/15 12:58:34 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ SRCS_OBJS = $(SRCS:.c=.o)
 
 
 .PHONY: all
-all : solong
+all : so_long
 
 %.o : %.c
 	gcc -Wall -Wextra -Werror -c $<
 	mv *.o Src
 
-solong : $(SRCS_OBJS)
+so_long : $(SRCS_OBJS)
 	gcc -lmlx -framework opengl -framework appkit -o so_long $^
 
 .PHONY: clean

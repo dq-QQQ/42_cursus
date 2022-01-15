@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:47:12 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/14 14:46:22 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/15 12:55:12 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define ROW 15
 # define X_EVENT_KEYPRESS 2
 # define X_EVENT_EXIT 17
-# define KEYCODE_EXIT 53
 # define UP 13
 # define LEFT 0
 # define DOWN 1
