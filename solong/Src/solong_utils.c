@@ -1,20 +1,5 @@
 #include "../Inc/solong.h"
 
-int	key_check(int keycode, t_game *game)
-{
-	if (keycode == KEY_ESC)
-		end_program(0);
-	if (keycode == LEFT)
-		move_left(game);
-	if (keycode == RIGHT)
-		move_right(game);
-	if (keycode == UP)
-		move_up(game);
-	if (keycode == DOWN)
-		move_down(game);
-	return (0);
-}
-
 int	end_program(int flag)
 {
 	char	*notify_str;
@@ -45,30 +30,47 @@ void	put_data_to_game(t_game *game, int i, char **line)
 	*line = NULL;
 }
 
+int		check_ber(t_game *game)
+{
+	int	i;
+	char *tmp;
+
+	i = 0;
+	tmp = game->map_path;
+	while (tmp[i + 1])
+		i++;
+	if (tmp[i] != 'r' || tmp[i - 1] != 'e' || tmp[i - 2] != 'b')
+		return (0);
+	else
+		return (1);
+}
+
 void	check_valid_map(t_game *game)
 {
 	int	i;
 	int	j;
-	int	at_least_one;
 
-	at_least_one = 0;
 	i = -1;
-	game->collectible = 0;
 	while (++i < ROW)
 	{
 		j = -1;
 		while (++j < COL)
 		{
-			if (game->map[i][j] == 'P' || game->map[i][j] == 'E')
-				at_least_one++;
+			if (game->map[i][j] == 'P')
+				game->p_cnt++;
 			else if (game->map[i][j] == 'C')
-				game->collectible++;
-			else if (i == 0 || i == 14 || j == 0 || j == 14)
+				game->c_cnt++;
+			else if (game->map[i][j] == 'E')
+				game->e_cnt++;
+			else if (game->map[i][j] != '1' && game->map[i][j] != '0')
+				end_program(-1);
+			if (i == 0 || i == 14 || j == 0 || j == 14)
 				if (game->map[i][j] != '1')
 					end_program(-1);
 		}
 	}
-	if (at_least_one != 2 || game->collectible == 0)
+	if (game->c_cnt == 0 || game->e_cnt != 1 || game->p_cnt != 1
+	|| check_ber(game) == 0)
 		end_program(-1);
 }
 

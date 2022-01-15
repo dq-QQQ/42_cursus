@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:47:12 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/15 12:55:12 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/15 19:14:30 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_player	*player;
+	t_player	player;
 	char		map[ROW][COL];
-	int			collectible;
+	int			p_cnt;
+	int			c_cnt;
+	int			e_cnt;
+	char		*map_path;
 }	t_game;
 
 void	ft_putnbr(int n);
 int		end_program(int flag);
-void	map_init(t_game *game, char *map_path);
+void	map_init(t_game *game);
 int		get_next_line(char **line, int fd);
 void	check_valid_map(t_game *game);
 void	put_data_to_game(t_game *game, int i, char **line);

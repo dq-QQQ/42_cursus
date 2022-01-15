@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 18:12:04 by kyujlee           #+#    #+#              #
-#    Updated: 2022/01/15 12:58:34 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/01/15 19:23:14 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ clean :
 
 .PHONY: fclean
 fclean : clean
-	rm -rf solong
+	rm -rf so_long
 
 .PHONY: re
 re : fclean all

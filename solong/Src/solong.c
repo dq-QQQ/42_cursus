@@ -13,7 +13,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		game_init(&game);
-		map_init(&game, argv[1]);
+		game.map_path = argv[1];
+		map_init(&game);
 		mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &key_check, &game);
 		mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &end_program, &game);
 		mlx_loop(game.mlx_ptr);

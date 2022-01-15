@@ -41,8 +41,8 @@ void	draw_tiles(t_game *game)
 				draw_element(game, col, row, '1');
 			else if (game->map[row][col] == 'P')
 			{
-				game->player->x = row;
-				game->player->y = col;
+				game->player.x = row;
+				game->player.y = col;
 				draw_element(game, col, row, 'P');
 			}
 			else if (game->map[row][col] == 'C')
@@ -53,7 +53,7 @@ void	draw_tiles(t_game *game)
 	}
 }
 
-void	map_init(t_game *game, char *map_path)
+void	map_init(t_game *game)
 {
 	char	*line;
 	int		fd;
@@ -61,7 +61,7 @@ void	map_init(t_game *game, char *map_path)
 
 	line = NULL;
 	i = 0;
-	fd = open(map_path, O_RDONLY);
+	fd = open(game->map_path, O_RDONLY);
 	while (get_next_line(&line, fd) > 0)
 		put_data_to_game(game, i++, &line);
 	put_data_to_game(game, i, &line);
