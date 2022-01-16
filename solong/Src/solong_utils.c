@@ -30,10 +30,10 @@ void	put_data_to_game(t_game *game, int i, char **line)
 	*line = NULL;
 }
 
-int		check_ber(t_game *game)
+int	check_ber(t_game *game)
 {
-	int	i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = game->map_path;
@@ -70,7 +70,7 @@ void	check_valid_map(t_game *game)
 		}
 	}
 	if (game->c_cnt == 0 || game->e_cnt != 1 || game->p_cnt != 1
-	|| check_ber(game) == 0)
+		|| check_ber(game) == 0)
 		end_program(-1);
 }
 
