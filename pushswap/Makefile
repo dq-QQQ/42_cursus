@@ -1,5 +1,5 @@
 
-SRCS = Src/pushswap.c 
+SRCS = Src/pushswap.c Src/pushswap_utils.c Src/pushswap_utils2.c
 
 SRCS_OBJS = $(SRCS:.c=.o)
 

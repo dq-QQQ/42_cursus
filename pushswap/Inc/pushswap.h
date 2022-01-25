@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/25 15:39:12 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/25 19:24:34 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,24 @@ typedef	struct		s_stack
 	struct	s_stack	*next;
 }					t_stack;
 
+typedef	struct		s_mos
+{
+	int 			more;
+	int 			less;
+	int 			cn;
+}					t_mos;
+
+t_stack	*ft_lstlast(t_stack *lst);
 int			ft_atoi(const char *str);
-int	ft_isdigit(int c);
-size_t	ft_strlen(const char *s);
-char			**ft_split(char const *s, char c);
+int	        ft_isdigit(int c);
+size_t	    ft_strlen(const char *s);
+char		**ft_split(char const *s, char c);
+void	ft_lstadd_back(t_stack **lst, t_stack *stack);
 
 void check_overlap();//중복된 숫자 확인
 void ft_putstr();//에러출력, 실행 명령어 출력
 
-void init_stack();//들어온 숫자 초기화
+t_stack *init_stack(char *str);
 
 void push_stack();//스택에 푸시하기
 void pop_stack();//스택에서 팝하기

@@ -10,7 +10,8 @@ void mkArr(int* arr, int size){
         memset(test,0,size*4);
         srand(time(NULL));
         while(cnt<size){
-                int num = rand()%size;
+                //printf ("ho");
+                int num = rand()% (size);
                 if(test[num] == 0){
                         test[num] = 1;
                         arr[cnt] = num;
