@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/10/24 17:46:00 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/25 15:12:35 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				main(int argc, char **argv)
+#include "../Inc/pushswap.h"
+
+int				main()//int argc, char **argv)
 {
-	if (숫자 말고 다른거 있을때 && 중복되는 수 && argc > intmax){
-        write(2, "Error\n", 6);
-        return (-1);
-    }
-    if (argc < )
-    
-	return (0);
+	write(1, "ho", 2);
 }

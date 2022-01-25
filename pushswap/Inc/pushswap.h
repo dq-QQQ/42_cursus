@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2021/10/24 17:46:02 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/25 15:39:12 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef	struct		s_stack
+{
+	int				data;
+	struct	s_stack	*next;
+}					t_stack;
 
-void ft_atoi();// 숫자 추출
+int			ft_atoi(const char *str);
+int	ft_isdigit(int c);
+size_t	ft_strlen(const char *s);
+char			**ft_split(char const *s, char c);
+
 void check_overlap();//중복된 숫자 확인
 void ft_putstr();//에러출력, 실행 명령어 출력
 
@@ -31,3 +42,6 @@ void r_rotate_data();// rra rrb
 void combine_instructions();// rr rrr
 
 void check_top_two(); //  switch 해야하는 조건인지 확인
+
+
+#endif
