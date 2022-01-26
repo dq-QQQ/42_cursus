@@ -6,16 +6,16 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/26 13:27:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/26 16:14:15 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
 int	overlap_check(t_stack *stack, int data)
 {
-	t_stack *tmp;
+	t_stack_node *tmp;
 
-	tmp = stack;
+	tmp = &(stack->header);
 	while (tmp->next)
 	{
 		if (tmp->data == data)
@@ -26,9 +26,11 @@ int	overlap_check(t_stack *stack, int data)
 }
 #include <stdio.h>
 
-int	init_stack(char *s, t_stack **stack)
+
+
+int	init_stack(char *s, t_stack *stack)
 {
-	t_stack *buff;
+	t_stack_node *buff;
 	int num;
 	int i;
 	char **parse_num;
@@ -36,19 +38,20 @@ int	init_stack(char *s, t_stack **stack)
 	parse_num = ft_split(s, ' ');
 	if (parse_num == (void *)0)
 		return (-1);
-	*stack = (t_stack *)malloc(sizeof(t_stack));
-	buff = *stack;
+	buff = &(stack->header);
 	i = -1;
 	while (parse_num[++i])
 	{
 		num = ft_atoi(parse_num[i]);
-		if (overlap_check(*stack, num))
+		if (overlap_check(stack, num))
 			return (-2);
 		buff->data = num;
-		if (*(parse_num) == NULL)
+		stack->size++;
+		if (parse_num[i + 1] == NULL)
 			break;
-		buff->next = (t_stack *)malloc(sizeof(t_stack));
+		buff->next = (t_stack_node *)malloc(sizeof(t_stack_node));
 		buff = buff->next;
+		
 	}
 	free(parse_num);
 	return (0);
@@ -65,26 +68,38 @@ void error(int flag){
 	exit(0);
 }
 
-void deletestack(t_stack *stack, int i)
+// void deletestack(t_stack *stack)
+// {
+// 	if (stack->next){
+// 		deletestack(stack->next);
+// 		free(stack);
+// 		stack = NULL;
+// 	}
+// }
+
+
+void	free_stack(t_stack *stack)
 {
-	if (stack->next){
-		deletestack(stack->next, ++i);
-		free(stack);
-		stack = NULL;
+	size_t			i;
+	t_stack_node	*current;
+	t_stack_node	*delete;
+
+	i = 0;
+	current = stack->header.next;
+	while (i < stack->size - 1)
+	{
+		delete = current;
+		current = current->next;
+		free(delete);
+		i++;
 	}
-	if (i == 0){
-		free(stack);
-		stack = NULL;
-	}
-	
 }
-
-
 
 int				main(int argc, char **argv)
 {
 	t_mos ms;
-	t_stack *stack;
+	t_stack stack;
+
 	int flag;
 
 	if (argc != 2)
@@ -92,8 +107,8 @@ int				main(int argc, char **argv)
 	flag = init_stack(argv[1], &stack);
 	if (flag)
 		error(flag);
-	deletestack(stack, 0);
-	//free(stack);
+	//deletestack(&stack);
+	free_stack(&stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked");
 	return (0);
 }
