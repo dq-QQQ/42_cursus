@@ -9,15 +9,18 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-static size_t	cnt_word(char const *s, char c)
+static int	cnt_word(char const *s, char c)
 {
 	size_t	i;
-	size_t	cnt;
+	int	cnt;
 
 	i = 0;
 	cnt = 0;
 	while (*(s + i))
 	{
+		if (!ft_isdigit(*(s + i)))
+			if (*(s + i) != c)
+				return (-1);
 		if (*(s + i) == c)
 			i++;
 		else
@@ -74,12 +77,14 @@ static int		cut_str(char const *s, char c, char **ret, size_t word)
 
 char			**ft_split(char const *s, char c)
 {
-	size_t	cnt;
+	int	cnt;
 	char	**ret;
 
 	if (!s)
 		return ((void *)0);
 	cnt = cnt_word(s, c);
+	if (cnt == -1)
+		return ((void *)0);
 	if ((ret = (char **)malloc(sizeof(char *) * (cnt + 1))) == 0)
 		return (0);
 	*(ret + cnt) = 0;

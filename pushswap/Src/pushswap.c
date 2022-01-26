@@ -6,82 +6,94 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/25 19:52:04 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/26 13:27:34 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
-
-
-// t_stack *init_stack(char *str)
-// {
-// 	char *tmp_ptr;
-// 	char *tmp_str;
-// 	int i;
-// 	t_stack *ret;
-// 	t_stack tmp;
-
-// 	ret = (t_stack *)malloc(sizeof(t_stack));
-// 	while (str){
-// 		if (ft_isdigit(*str)){//숫자면 1 아니면 0(숫자면)
-// 			tmp_ptr = str;
-// 			while (ft_isdigit(*tmp_ptr))// 숫자 아닐때까지 가서
-// 				tmp_ptr++;
-// 			tmp_str = (char *)malloc(tmp_ptr - str + 1);
-// 			tmp_str[tmp_ptr - str] = '\0';
-// 			i = 0;
-// 			while (tmp_ptr != str)//복사
-// 				tmp_str[i++] = *(str++);
-// 			tmp.data = ft_atoi(tmp_str);
-// 			ft_lstadd_back(&ret, &tmp);
-// 			free(tmp_str);
-// 		}
-// 		else
-// 			str++;
-// 	}
-// 	return (ret);
-// }
-
-
-
-static	t_stack	*ft_crtstack(char *s, t_stack *st, int u, t_stack *res)
+int	overlap_check(t_stack *stack, int data)
 {
-	t_stack		*buf;
-	int			dig;
-	char		**arr;
+	t_stack *tmp;
 
-	arr = ft_split(s, ' ');
-	while (arr[++u])
+	tmp = stack;
+	while (tmp->next)
 	{
-		dig = ft_atoi(arr[u]);
-		if (!res)
-		{
-			res = (t_stack *)malloc(sizeof(t_stack))
-			buf = res;
-		}
-		else
-		{
-			buf->next = (t_stack *)malloc(sizeof(t_stack))
-			buf = buf->next;
-		}
-		buf->data = dig;
-		buf->next = 0;
+		if (tmp->data == data)
+			return (1);
+		tmp = tmp->next;
 	}
-	return (res);
+	return (0);
 }
+#include <stdio.h>
+
+int	init_stack(char *s, t_stack **stack)
+{
+	t_stack *buff;
+	int num;
+	int i;
+	char **parse_num;
+
+	parse_num = ft_split(s, ' ');
+	if (parse_num == (void *)0)
+		return (-1);
+	*stack = (t_stack *)malloc(sizeof(t_stack));
+	buff = *stack;
+	i = -1;
+	while (parse_num[++i])
+	{
+		num = ft_atoi(parse_num[i]);
+		if (overlap_check(*stack, num))
+			return (-2);
+		buff->data = num;
+		if (*(parse_num) == NULL)
+			break;
+		buff->next = (t_stack *)malloc(sizeof(t_stack));
+		buff = buff->next;
+	}
+	free(parse_num);
+	return (0);
+}
+
+
+void error(int flag){
+	if (flag == -1)
+		write(1, "non numeric value", 18);
+	else if (flag == -2)
+		write(1, "overlap numeric value", 22);
+	else if (flag == 0)
+		write(1, "different number of argument", 29);
+	exit(0);
+}
+
+void deletestack(t_stack *stack, int i)
+{
+	if (stack->next){
+		deletestack(stack->next, ++i);
+		free(stack);
+		stack = NULL;
+	}
+	if (i == 0){
+		free(stack);
+		stack = NULL;
+	}
+	
+}
+
+
 
 int				main(int argc, char **argv)
 {
 	t_mos ms;
-	t_stack *st;
+	t_stack *stack;
+	int flag;
 
-	ms.less = 0;
-	ms.more = 0;
-	ms.cn = 0;
-	st = 0;
-	if (argc == 2){
-		st = ft_crtstack(argv[1], st, -1, 0);
-	}
-	write (1, "ho", 2);
+	if (argc != 2)
+		error(0);
+	flag = init_stack(argv[1], &stack);
+	if (flag)
+		error(flag);
+	deletestack(stack, 0);
+	//free(stack);
+	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked");
 	return (0);
 }

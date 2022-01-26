@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/25 19:24:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/26 11:24:28 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *stack);
 void check_overlap();//중복된 숫자 확인
 void ft_putstr();//에러출력, 실행 명령어 출력
 
-t_stack *init_stack(char *str);
+
 
 void push_stack();//스택에 푸시하기
 void pop_stack();//스택에서 팝하기
