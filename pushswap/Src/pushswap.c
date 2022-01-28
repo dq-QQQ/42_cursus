@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/26 13:27:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/28 14:34:26 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@ int	init_stack(char *s, t_stack **stack)
 	while (parse_num[++i])
 	{
 		num = ft_atoi(parse_num[i]);
+		free(parse_num[i]);
 		if (overlap_check(*stack, num))
 			return (-2);
 		buff->data = num;
-		if (*(parse_num) == NULL)
+		if (parse_num[i + 1] == NULL)
 			break;
 		buff->next = (t_stack *)malloc(sizeof(t_stack));
 		buff = buff->next;
 	}
+
 	free(parse_num);
 	return (0);
 }
@@ -65,20 +67,23 @@ void error(int flag){
 	exit(0);
 }
 
-void deletestack(t_stack *stack, int i)
+static void		free_stack(t_stack *stack)
 {
-	if (stack->next){
-		deletestack(stack->next, ++i);
-		free(stack);
-		stack = NULL;
-	}
-	if (i == 0){
-		free(stack);
-		stack = NULL;
-	}
-	
-}
+	t_stack		*track_next;
+	t_stack		*delete;
 
+	if (stack)
+	{
+		track_next = stack->next;
+		while (track_next)
+		{
+			delete = track_next;
+			track_next = track_next->next;
+			free(delete);
+		}
+		free(track_next);
+	}
+}
 
 
 int				main(int argc, char **argv)
@@ -87,13 +92,12 @@ int				main(int argc, char **argv)
 	t_stack *stack;
 	int flag;
 
-	if (argc != 2)
-		error(0);
+	// if (argc != 2)
+	// 	error(0);
 	flag = init_stack(argv[1], &stack);
 	if (flag)
 		error(flag);
-	deletestack(stack, 0);
-	//free(stack);
+	// free_stack(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked");
 	return (0);
 }
