@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/26 11:24:28 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/28 16:09:41 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdio.h>
 
 typedef	struct		s_stack
 {
@@ -28,18 +29,19 @@ typedef	struct		s_mos
 	int 			cn;
 }					t_mos;
 
-t_stack	*ft_lstlast(t_stack *lst);
 int			ft_atoi(const char *str);
 int	        ft_isdigit(int c);
 size_t	    ft_strlen(const char *s);
 char		**ft_split(char const *s, char c);
 void	ft_lstadd_back(t_stack **lst, t_stack *stack);
-
-void check_overlap();//중복된 숫자 확인
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+int	init_stack(char *s, t_stack **stack);
+void deletestack(t_stack *stack);
+int	is_overlap(t_stack *stack, int data);
 void ft_putstr();//에러출력, 실행 명령어 출력
-
-
-
+void end_program(int flag);
+int			cnt_element(t_stack *stack);
+int is_sorted(t_stack *stack);
 void push_stack();//스택에 푸시하기
 void pop_stack();//스택에서 팝하기
 

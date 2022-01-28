@@ -6,110 +6,84 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/28 14:41:03 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/01/28 16:32:03 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
-int	overlap_check(t_stack *stack, int data)
-{
-	t_stack *tmp;
 
-	tmp = stack;
-	while (tmp->next)
+void	push_swap(t_stack *a, t_stack *b, t_mos ms)
+{
+	int flag;
+
+	while (cnt_element(a) > 3 && !is_sorted(a))
+		//until_three(&a, &b, ms);
+	while (!is_sorted(a))
 	{
-		if (tmp->data == data)
-			return (1);
-		tmp = tmp->next;
+		if (a->data > a->next->data && a->data > a->next->next->data)
+			flag = 6;
+		else if (a->data > a->next->data && a->data < a->next->next->data)
+			flag = 1;
+		else
+			flag = 9;
+		//연산
+		//연산한거 출력
 	}
-	return (0);
-}
-#include <stdio.h>
-
-int	init_stack(char *s, t_stack **stack)
-{
-	t_stack *buff;
-	int num;
-	int i;
-	char **parse_num;
-
-	parse_num = ft_split(s, ' ');
-	if (parse_num == (void *)0)
-		return (-1);
-	*stack = (t_stack *)malloc(sizeof(t_stack));
-	buff = *stack;
-	i = -1;
-	while (parse_num[++i])
+	while (b)
 	{
-		num = ft_atoi(parse_num[i]);
-		free(parse_num[i]);
-		if (overlap_check(*stack, num))
-			return (-2);
-		buff->data = num;
-		if (*(parse_num) == NULL)
-			break;
-		buff->next = (t_stack *)malloc(sizeof(t_stack));
-		buff = buff->next;
+		//플래그 정하고
+		//연산
+		//연산한거 출력
 	}
-	free(parse_num);
-	return (0);
 }
 
 
-void error(int flag){
-	if (flag == -1)
-		write(1, "non numeric value", 18);
-	else if (flag == -2)
-		write(1, "overlap numeric value", 22);
-	else if (flag == 0)
-		write(1, "different number of argument", 29);
-	exit(0);
-}
-
-void deletestack(t_stack *stack, int i)
+void		print_oper(int i, int j)
 {
-	if (stack->next){
-		deletestack(stack->next, ++i);
-		free(stack);
-		stack = NULL;
-	}
-	if (i == 0){
-		free(stack);
-		stack = NULL;
-	}
+	if (i == 1)
+		write(1, "sa", 2);
+	else if (i == 2)
+		write(1, "sb", 2);
+	else if (i == 3)
+		write(1, "ss", 2);
+	else if (i == 4)
+		write(1, "pa", 2);
+	else if (i == 5)
+		write(1, "pb", 2);
+	else if (i == 6)
+		write(1, "ra", 2);
+	else if (i == 7)
+		write(1, "rb", 2);
+	else if (i == 8)
+		write(1, "rr", 2);
+	else if (i == 9)
+		write(1, "rra", 3);
+	else if (i == 10)
+		write(1, "rrb", 3);
+	else if (i == 11)
+		write(1, "rrr", 3);
+	if (j)
+		write(1, "\n", 1);
 }
-static void		free_stack(t_stack *stack)
-{
-	t_stack		*track_next;
-	t_stack		*delete;
-
-	if (stack)
-	{
-		track_next = stack->next;
-		while (track_next)
-		{
-			delete = track_next;
-			track_next = track_next->next;
-			free(delete);
-		}
-		free(track_next);
-	}
-}
-
 
 int				main(int argc, char **argv)
 {
 	t_mos ms;
 	t_stack *stack;
 	int flag;
-
+	ms.more = 0;
 	if (argc != 2)
-		error(0);
+		end_program(0);
 	flag = init_stack(argv[1], &stack);
 	if (flag)
-		error(flag);
-	// deletestack(stack, 0);
-	free_stack(stack);
+		end_program(flag);
+	if (is_sorted(stack))
+		end_program(1);
+	if (cnt_element(stack) == 2)
+		write(1, "sa\n", 3);
+	// push_swap(stack, 0, ms);
+	deletestack(stack);
+	stack = NULL;
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked");
 	return (0);
 }
