@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/28 16:09:41 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/03 16:43:34 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@
 # include <stdlib.h>
 #include <stdio.h>
 
-typedef	struct		s_stack
+typedef	struct		s_stack_node
 {
 	int				data;
-	struct	s_stack	*next;
+	struct	s_stack_node *prev;
+	struct	s_stack_node	*next;
+}					t_stack_node;
+
+typedef	struct		s_stack
+{
+	int				cnt;
+	struct	s_stack_node *header;
 }					t_stack;
 
 typedef	struct		s_mos

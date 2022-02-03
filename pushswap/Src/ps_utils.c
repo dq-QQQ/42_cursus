@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/28 16:55:07 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/03 12:20:59 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void end_program(int flag)
 		write(1, "Already sorted", 15);
 	else if (flag == -3)
 		write (1, "Input number is over than MAXINT", 33);
-	
 	exit(0);
 }
 

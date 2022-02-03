@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/28 16:32:03 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/03 12:06:15 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,10 @@ int				main(int argc, char **argv)
 {
 	t_mos ms;
 	t_stack *stack;
-	int flag;
-	ms.more = 0;
+
 	if (argc != 2)
 		end_program(0);
-	flag = init_stack(argv[1], &stack);
-	if (flag)
-		end_program(flag);
+	init_stack(argv[1], &stack);
 	if (is_sorted(stack))
 		end_program(1);
 	if (cnt_element(stack) == 2)
