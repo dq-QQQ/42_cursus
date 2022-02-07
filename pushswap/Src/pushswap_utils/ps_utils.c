@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 12:28:01 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 15:37:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,57 @@ int	is_overlap(t_stack *stack, int data)
 void end_program(int flag, t_stack *stack)
 {
 	if (flag == -1)
-		write(1, "non numeric value", 18);
+		ft_putstr("non numeric value");
 	else if (flag == -2)
-		write(1, "overlap numeric value", 22);
+		ft_putstr("overlap numeric value");
 	else if (flag == 0)
-		write(1, "different number of argument", 29);
+		ft_putstr("different number of argument");
 	else if (flag == 1)
-		write(1, "Already sorted", 15);
+		ft_putstr("Already sorted");
 	else if (flag == -3)
-		write (1, "Input number is over than MAXINT", 33);
+		ft_putstr("Input number is over than MAXINT");
 	if (stack)
 		delete_stack(stack);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	exit(0);
+}
+
+void display(int flag)
+{
+	if (flag == 1)	
+		ft_putstr("sa\n");
+	else if (flag == 2)
+		ft_putstr("sb\n");
+	else if (flag == 3)
+		ft_putstr("pa\n");	
+	else if (flag == 4)
+		ft_putstr("pb\n");
+	else if (flag == 5)
+		ft_putstr("ra\n");
+	else if (flag == 6)
+		ft_putstr("rb\n");
+	else if (flag == 7)
+		ft_putstr("rra\n");
+	else if (flag == 8)
+		ft_putstr("rrb\n");
+	else if (flag == 9)
+		ft_putstr("ss\n");
+	else if (flag == 10)
+		ft_putstr("rr\n");
+	else if (flag == 11)
+		ft_putstr("rrr\n");
+}
+
+void display_instruction(t_stack *stack)
+{
+	t_stack_node *tmp;
+	int i;
+
+	i = stack->cnt;
+	tmp = stack->top;
+	while (i-- > 0)
+	{
+		display(tmp->data);
+		tmp = tmp->next;
+	}
 }

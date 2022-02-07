@@ -59,3 +59,36 @@ void reverse_rotate_data(t_stack *stack)
         stack->bottom = second;
     }
 }
+
+void move_data(t_stack *from, t_stack *to)
+{
+    int tmp;
+
+    if (from->top)
+    {
+        tmp = from->top->data;
+        delete_front(from);
+        insert_front(to, tmp);
+    }
+}
+
+void operation_flags(t_stack *a, t_stack *b, t_stack *inst, int flag)
+{
+    if (flag == 1)//sa
+		switch_data(a);
+	else if (flag == 2)//sb
+		switch_data(b);
+	else if (flag == 3)//pa
+		move_data(a, b);
+	else if (flag == 4)//pb 
+		move_data(b, a);
+	else if (flag == 5)//ra
+		rotate_data(a);
+	else if (flag == 6)//rb
+		rotate_data(b);
+	else if (flag == 7)//rra
+		reverse_rotate_data(a);
+	else if (flag == 8)//rrb
+		reverse_rotate_data(b);
+    insert_back(inst, flag);
+}

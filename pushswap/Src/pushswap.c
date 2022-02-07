@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 14:26:06 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 15:48:52 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,16 @@
 // }
 //
 //
-// void		print_oper(int i, int j)
-// {
-// 	if (i == 1)
-// 		write(1, "sa", 2);
-// 	else if (i == 2)
-// 		write(1, "sb", 2);
-// 	else if (i == 3)
-// 		write(1, "ss", 2);
-// 	else if (i == 4)
-// 		write(1, "pa", 2);
-// 	else if (i == 5)
-// 		write(1, "pb", 2);
-// 	else if (i == 6)
-// 		write(1, "ra", 2);
-// 	else if (i == 7)
-// 		write(1, "rb", 2);
-// 	else if (i == 8)
-// 		write(1, "rr", 2);
-// 	else if (i == 9)
-// 		write(1, "rra", 3);
-// 	else if (i == 10)
-// 		write(1, "rrb", 3);
-// 	else if (i == 11)
-// 		write(1, "rrr", 3);
-// 	if (j)
-// 		write(1, "\n", 1);
-// }
 
 int				main(int argc, char **argv)
 {
 	t_mos ms;
 	t_stack *stack;
-	
+	t_stack *ex;
+	t_stack *instructions;
+
+	ex = create_stack();
+	instructions = create_stack();
 	if (argc < 2)
 		end_program(0, NULL);
 	stack = init_stack(argv);
@@ -78,8 +55,20 @@ int				main(int argc, char **argv)
 		end_program(1, stack);
 	if (stack->cnt == 2)
 		write(1, "sa\n", 3);
-	reverse_rotate_data(stack);
 	// push_swap(stack, 0, ms);
+	operation_flags(stack, ex, instructions, 1);
+	operation_flags(stack, ex, instructions, 2);
+	operation_flags(stack, ex, instructions, 3);
+	operation_flags(stack, ex, instructions, 4);
+	operation_flags(stack, ex, instructions, 5);
+	operation_flags(stack, ex, instructions, 6);
+	operation_flags(stack, ex, instructions, 7);
+	operation_flags(stack, ex, instructions, 8);
+	operation_flags(stack, ex, instructions, 9);
+	operation_flags(stack, ex, instructions, 10);
+	operation_flags(stack, ex, instructions, 11);
+	operation_flags(stack, ex, instructions, 12);
+	display_instruction(instructions);
 	delete_stack(stack);
 	stack = NULL;
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");

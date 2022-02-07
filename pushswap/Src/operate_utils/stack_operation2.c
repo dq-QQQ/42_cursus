@@ -21,3 +21,4 @@ void delete_stack(t_stack *stack)
     free(stack);
     stack = NULL;
 }
+
