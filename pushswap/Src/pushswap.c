@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 11:57:57 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 13:05:47 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 // 		//연산한거 출력
 // 	}
 // }
-
-
+//
+//
 // void		print_oper(int i, int j)
 // {
 // 	if (i == 1)
@@ -78,6 +78,7 @@ int				main(int argc, char **argv)
 		end_program(1, stack);
 	if (stack->cnt == 2)
 		write(1, "sa\n", 3);
+	// switch_data(stack);
 	// push_swap(stack, 0, ms);
 	delete_stack(stack);
 	stack = NULL;

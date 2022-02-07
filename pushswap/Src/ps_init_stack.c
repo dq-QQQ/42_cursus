@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:28 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 12:31:26 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 13:29:33 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,23 @@
 char *combine_argv(char **argv)
 {
 	char *ret;
+	char *tmp;
 	int i;
-	
-	ret = NULL;
-	i = 0;
-	while (argv[++i])
-	{
-		ret = ft_strjoin(ret, argv[i]);
 
+
+	if (argv[2] == NULL)
+		ret = ft_strdup(argv[1]);
+	else
+	{
+		ret = (char *)malloc(1);
+		ret[0] = '\0';
+		i = 0;
+		while (argv[++i])
+		{
+			tmp = ret;
+			ret = ft_strjoin(ret, argv[i]);
+			free(tmp);
+		}
 	}
 	return ret;
 }
@@ -36,10 +45,7 @@ t_stack* init_stack(char **argv)
 	int		i;
 	int		num;
 
-	if (argv[2] != NULL)
-		s = combine_argv(argv);
-	else
-		s = argv[1];
+	s = combine_argv(argv);
 	parse_num = ft_split(s, ' ');
 	if (parse_num == (void *)0)
 		end_program(-1, NULL);
@@ -54,5 +60,6 @@ t_stack* init_stack(char **argv)
 		insert_back(ret, num);
 	}
 	free(parse_num);
+	free(s);
 	return (ret);
 }

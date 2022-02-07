@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 10:13:49 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 13:29:00 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,64 @@ typedef	struct		s_mos
 	int 			cn;
 }					t_mos;
 
-int			ft_atoi(const char *str);
-int	        ft_isdigit(int c);
-size_t	    ft_strlen(const char *s);
-char		**ft_split(char const *s, char c);
-void	ft_lstadd_back(t_stack **lst, t_stack *stack);
+
+/*
+** stack_operation.c
+*/
+void insert_front(t_stack* stack, int data);
+void insert_back(t_stack* stack, int data);
+void delete_front(t_stack* stack);
+void delete_back(t_stack* stack);
+
+/*
+** stack_operation2.c
+*/
+t_stack	*create_stack(void);
+void delete_stack(t_stack *stack);
+
+/*
+** ps_init_stack.c
+*/
+t_stack* init_stack(char **argv);
+
+
+/*
+** libft_utils.c
+*/
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-int	init_stack(char *s, t_stack **stack);
-void deletestack(t_stack *stack);
+int		ft_atoi(const char *str, t_stack* stack);
+int	       ft_isdigit(int c);
+size_t	    ft_strlen(const char *s);
+
+/*
+** libft_utils2.c
+*/
+char		**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+
+/*
+** libft_utils3.c
+*/
+char	*ft_strdup(const char *s1);
+
+
+
+/*
+** ps_utils.c
+*/
 int	is_overlap(t_stack *stack, int data);
-void ft_putstr();//에러출력, 실행 명령어 출력
-void end_program(int flag);
-int			cnt_element(t_stack *stack);
+void end_program(int flag, t_stack *stack);
 int is_sorted(t_stack *stack);
-void push_stack();//스택에 푸시하기
-void pop_stack();//스택에서 팝하기
+
+
+
+
 
 void move_stackdata();//pa pb
-void switch_top_two();// sa, sb
+void switch_data(t_stack *stack);
 void rotate_data();// ra rb
-void r_rotate_data();// rra rrb
+void reverse_rotate_data();// rra rrb
 
 void combine_instructions();// rr rrr
 
