@@ -6,11 +6,11 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:28 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 13:29:33 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 15:57:37 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inc/pushswap.h"
+#include "../../Inc/pushswap.h"
 
 
 char *combine_argv(char **argv)

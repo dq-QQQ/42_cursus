@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 13:29:00 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 15:56:01 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef	struct		s_stack
 	struct	s_stack_node *bottom;
 }					t_stack;
 
+
+
 typedef	struct		s_mos
 {
 	int 			more;
@@ -37,25 +39,6 @@ typedef	struct		s_mos
 	int 			cn;
 }					t_mos;
 
-
-/*
-** stack_operation.c
-*/
-void insert_front(t_stack* stack, int data);
-void insert_back(t_stack* stack, int data);
-void delete_front(t_stack* stack);
-void delete_back(t_stack* stack);
-
-/*
-** stack_operation2.c
-*/
-t_stack	*create_stack(void);
-void delete_stack(t_stack *stack);
-
-/*
-** ps_init_stack.c
-*/
-t_stack* init_stack(char **argv);
 
 
 /*
@@ -77,6 +60,41 @@ char	*ft_strjoin(char const *s1, char const *s2);
 ** libft_utils3.c
 */
 char	*ft_strdup(const char *s1);
+void	ft_putstr(char *s);
+
+
+
+/*
+** ps_operation.c
+*/
+void move_data(t_stack *from, t_stack *to);
+void switch_data(t_stack *stack);
+void rotate_data(t_stack *stack);// ra rb
+void reverse_rotate_data(t_stack *stack);// rra rrb
+void operation_flags(t_stack *a, t_stack *b, t_stack *inst, int flag);
+
+
+/*
+** stack_operation.c
+*/
+void insert_front(t_stack* stack, int data);
+void insert_back(t_stack* stack, int data);
+void delete_front(t_stack* stack);
+void delete_back(t_stack* stack);
+
+/*
+** stack_operation2.c
+*/
+t_stack	*create_stack(void);
+void delete_stack(t_stack *stack);
+
+
+/*
+** ps_init_stack.c
+*/
+t_stack* init_stack(char **argv);
+
+
 
 
 
@@ -86,19 +104,14 @@ char	*ft_strdup(const char *s1);
 int	is_overlap(t_stack *stack, int data);
 void end_program(int flag, t_stack *stack);
 int is_sorted(t_stack *stack);
+void display(int flag);
+void display_instruction(t_stack *stack);
 
 
 
-
-
-void move_stackdata();//pa pb
-void switch_data(t_stack *stack);
-void rotate_data();// ra rb
-void reverse_rotate_data();// rra rrb
 
 void combine_instructions();// rr rrr
 
-void check_top_two(); //  switch 해야하는 조건인지 확인
 
 
 #endif
