@@ -1,6 +1,6 @@
 
 
-#include "../Inc/pushswap.h"
+#include "../../Inc/pushswap.h"
 
 static int	cnt_word(char const *s, char c)
 {

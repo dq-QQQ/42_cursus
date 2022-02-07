@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_libft_utils.c                                   :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:41 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/01/28 16:42:15 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 09:52:53 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inc/pushswap.h"
+#include "../../Inc/pushswap.h"
 
 static void	skip(const char *str, int *i, int *sign)
 {

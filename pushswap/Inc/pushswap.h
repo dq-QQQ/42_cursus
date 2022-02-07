@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/03 16:43:34 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 10:13:49 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef	struct		s_stack_node
 typedef	struct		s_stack
 {
 	int				cnt;
-	struct	s_stack_node *header;
+	struct	s_stack_node *top;
+	struct	s_stack_node *bottom;
 }					t_stack;
 
 typedef	struct		s_mos

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/03 12:06:15 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 10:14:37 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ int				main(int argc, char **argv)
 	// push_swap(stack, 0, ms);
 	deletestack(stack);
 	stack = NULL;
-	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked");
+	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	return (0);
 }

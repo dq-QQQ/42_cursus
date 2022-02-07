@@ -6,11 +6,11 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/03 12:20:59 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 09:53:08 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inc/pushswap.h"
+#include "../../Inc/pushswap.h"
 
 int is_sorted(t_stack *stack)
 {
