@@ -30,9 +30,10 @@ void insert_back(t_stack* stack, int data)
     tmp->next = NULL;
     if (++stack->cnt == 1)
     {
-        tmp->next = NULL;
+        tmp->prev = NULL;
         stack->top = tmp;
         stack->bottom = tmp;
+        return ;
     }
     tmp->prev = stack->bottom;
     stack->bottom->next = tmp;
@@ -62,9 +63,8 @@ void delete_back(t_stack* stack)
 
     if (stack->cnt == 0)
         return ;
-    tmp = stack->top;
+    tmp = stack->bottom;
     stack->bottom = stack->bottom->prev;
-    
     if (stack->cnt == 1)
         stack->top = NULL;
     else
@@ -74,49 +74,11 @@ void delete_back(t_stack* stack)
     stack->cnt--;
 }
 
-t_stack	*create_stack(void)
-{
-	t_stack *ret;
+// int main()
+// {
+//     t_stack *ex;
 
-	ret = (t_stack *)malloc(sizeof(t_stack));
-	ret->cnt = 0;
-    ret->top = NULL;
-    ret->bottom = NULL;
-	return (ret);
-}
+//     ex =creat_stack();
 
-void delete_stack(t_stack *stack)
-{
-    while (stack->cnt > 0)
-        delete_front(stack);
-    free(stack);
-    stack = NULL;
-}
-
-int main(){
-  t_stack *dq;
-
-  dq = create_stack();
-  
-
-
-  insert_front(dq, 5);
-
-   insert_front(dq, 6);
-
-//   insert_front(dq, 7);
-
-
-//    insert_back(dq, 10);
-
-//       insert_back(dq, 11);
-
-//    insert_back(dq, 12);
-
-//    delete_front(dq);
-//    delete_back(dq);
-
-//    delete_stack(dq);
-	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
-
-}
+//     insert_front(ex, 1);
+// }

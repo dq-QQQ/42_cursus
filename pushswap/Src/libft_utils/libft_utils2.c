@@ -1,5 +1,3 @@
-
-
 #include "../../Inc/pushswap.h"
 
 static int	cnt_word(char const *s, char c)
@@ -78,5 +76,28 @@ char	**ft_split(char const *s, char c)
 	*(ret + cnt) = 0;
 	if (!cut_str(s, c, ret, 0))
 		return (0);
+	return (ret);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	len_1;
+	size_t	len_2;
+	char	*ret;
+
+	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+		return ((char *)s2);
+	if (!s2)
+		return ((char *)s1);
+	len_1 = ft_strlen(s1);
+	len_2 = ft_strlen(s2);
+	if ((ret = (char *)malloc(len_1 + len_2 + 2)) == 0)
+		return (0);
+	*(ret + len_1 + len_2 + 1) = 0;
+	ft_memcpy(ret, s1, len_1);
+	ret[len_1] = ' ';
+	ft_memcpy(ret + len_1 + 1, s2, len_2);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:41 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 09:52:53 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 11:50:07 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, t_stack* stack)
 {
 	int			i;
 	int			sign;
@@ -49,7 +49,7 @@ int	ft_atoi(const char *str)
 		if (ret == 2147483648 && sign == -1)
 				return (-2147483648);
 		if (ret > 2147483647)
-			end_program(-3);
+			end_program(-3, stack);
 		i++;
 	}
 	return (sign * (int)ret);

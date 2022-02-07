@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 09:53:08 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/07 12:28:01 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 int is_sorted(t_stack *stack)
 {
 	int curr_data;
-	t_stack *tmp_stack;
+	t_stack_node *tmp_node;
 
-	if (!stack->next)
+	if (!stack->top->next)
 		return (1);
-	curr_data = stack->data;
-	tmp_stack = stack->next;
-	while (tmp_stack)
+	curr_data = stack->top->data;
+	tmp_node = stack->top->next;
+	while (tmp_node)
 	{
-		if (tmp_stack->data > curr_data)
-			curr_data = tmp_stack->data;
+		if (tmp_node->data > curr_data)
+			curr_data = tmp_node->data;
 		else
 			return (0);
-		tmp_stack = tmp_stack->next;
+		tmp_node = tmp_node->next;
 	}
 	return (1);
 }
 
 int	is_overlap(t_stack *stack, int data)
 {
-	t_stack *tmp;
+	t_stack_node *tmp;
 
-	tmp = stack;
-	while (tmp->next)
+	tmp = stack->top;
+	while (tmp && tmp->next)
 	{
 		if (tmp->data == data)
 			return (1);
@@ -46,7 +46,7 @@ int	is_overlap(t_stack *stack, int data)
 	return (0);
 }
 
-void end_program(int flag)
+void end_program(int flag, t_stack *stack)
 {
 	if (flag == -1)
 		write(1, "non numeric value", 18);
@@ -58,27 +58,8 @@ void end_program(int flag)
 		write(1, "Already sorted", 15);
 	else if (flag == -3)
 		write (1, "Input number is over than MAXINT", 33);
+	if (stack)
+		delete_stack(stack);
+	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	exit(0);
-}
-
-void deletestack(t_stack *stack)
-{
-	if (stack->next){
-		deletestack(stack->next);
-	}
-	free(stack);
-	stack = NULL;
-}
-
-int			cnt_element(t_stack *stack)
-{
-	int		i;
-
-	i = 0;
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
 }
