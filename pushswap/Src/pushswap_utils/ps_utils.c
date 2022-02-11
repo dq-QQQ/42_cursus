@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 15:37:55 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/11 19:32:21 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void display(int flag)
 	else if (flag == 2)
 		ft_putstr("sb\n");
 	else if (flag == 3)
-		ft_putstr("pa\n");	
+		ft_putstr("pb\n");	
 	else if (flag == 4)
-		ft_putstr("pb\n");
+		ft_putstr("pa\n");
 	else if (flag == 5)
 		ft_putstr("ra\n");
 	else if (flag == 6)
@@ -99,7 +99,8 @@ void display_instruction(t_stack *stack)
 	tmp = stack->top;
 	while (i-- > 0)
 	{
-		display(tmp->data);
+        if (tmp->data)
+		    display(tmp->data);
 		tmp = tmp->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 15:56:01 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/11 20:36:42 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ typedef	struct		s_stack
 
 
 
-typedef	struct		s_mos
+typedef	struct		s_big_small
 {
-	int 			more;
-	int 			less;
-	int 			cn;
-}					t_mos;
+	int 			big;
+	int 			small;
+}					t_big_small;
 
 
 
@@ -87,6 +86,7 @@ void delete_back(t_stack* stack);
 */
 t_stack	*create_stack(void);
 void delete_stack(t_stack *stack);
+void clear_stack(t_stack *stack);
 
 
 /*
@@ -107,10 +107,20 @@ int is_sorted(t_stack *stack);
 void display(int flag);
 void display_instruction(t_stack *stack);
 
+/*
+** ps_utils2.c
+*/
+
+void		init_big_small(t_big_small *bs, t_stack *stack);
+void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs);
 
 
+/*
+** ps_check_inst.c
+*/
+void check_inst(t_stack* stack);
 
-void combine_instructions();// rr rrr
+
 
 
 

@@ -12,12 +12,19 @@ t_stack	*create_stack(void)
 	return (ret);
 }
 
-void delete_stack(t_stack *stack)
+
+void clear_stack(t_stack *stack)
 {
 	if (stack == NULL)
 		return;
     while (stack->cnt > 0)
         delete_front(stack);
+}
+
+
+void delete_stack(t_stack *stack)
+{
+	clear_stack(stack);
     free(stack);
     stack = NULL;
 }

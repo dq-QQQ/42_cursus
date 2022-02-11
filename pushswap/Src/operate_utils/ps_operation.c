@@ -78,9 +78,9 @@ void operation_flags(t_stack *a, t_stack *b, t_stack *inst, int flag)
 		switch_data(a);
 	else if (flag == 2)//sb
 		switch_data(b);
-	else if (flag == 3)//pa
+	else if (flag == 3)//pb
 		move_data(a, b);
-	else if (flag == 4)//pb 
+	else if (flag == 4)//pa 
 		move_data(b, a);
 	else if (flag == 5)//ra
 		rotate_data(a);

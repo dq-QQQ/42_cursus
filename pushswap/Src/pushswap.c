@@ -6,104 +6,165 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/07 16:48:31 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/11 21:19:15 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
 
-void		init_less(t_mos *ms, t_stack *st, int i)
+int	order(t_stack *b, t_stack_node *curr)
 {
-	ms->less = 0;
-	ms->more = 0;
-	ms->cn = count_val_st(st);
-	while (st)
+	t_stack_node *tmp;
+	int ret;
+
+	tmp = b->top;
+	ret = 1;
+	while (tmp)
 	{
-		if (st->nb > i)
-			ms->more += 1;
-		else
-			ms->less += 1;
-		st = st->next;
+		if (tmp == curr)
+			break;
+		ret++;
+		tmp = tmp->next;
 	}
+	return (ret);
 }
 
-void	until_three(t_stack **a, t_stack **b, t_stack *instructions, t_mos ms)
+void	move_node_to_a(t_stack *a, t_stack *b, t_stack *inst, t_stack_node *curr)
 {
-	int			res;
-	t_stack		*s;
+	t_stack_node *tmp;
+	int idx;
 
-	s = *b;
-	res = 0;
-	src_more_less(&ms, *a, a[0]->nb);
-	if (ms.less - 2 < (ms.more / 4))
-		res = 5; // ra
-	else if (src_updw_sp(*a, 0, ms, 5))
-		res = 9; //  rra
+	idx = order(b, curr);
+	if (idx < (float)(b->cnt) / 2)
+	{
+		tmp = b->top;
+		while (tmp != curr)
+		{
+			operation_flags(a,b, inst, 6);
+			tmp = tmp->next;
+		}
+	}
 	else
 	{
-		if (s)
-			res = s->nb;
-		while (s && s->next) 
-			s = s->next;
-		if (s && res < s->nb)
-			res = 8; // rr
-		else
-			res = 6; //ra
+		tmp = b->bottom;
+		while (tmp != curr)
+		{
+			operation_flags(a,b, inst, 8);
+			tmp = tmp->prev;
+		}
 	}
-	operation_flags(a, b, instructions, flag);
+	operation_flags(a,b, inst, 4);
+}
+
+void sort_a(t_stack *a, t_stack *b, t_stack *inst)
+{
+	int sort_data;
+	int cnt;
+
+	if (is_sorted(a))
+		return ;
+	cnt = 0;
+	sort_data = a->top->data;
+	operation_flags(a,b, inst, 3);
+	while (a->top->data <= sort_data)
+	{
+		operation_flags(a,b, inst, 5);
+		cnt++;
+	}
+	operation_flags(a,b, inst, 4);
+	while (cnt)
+	{
+		operation_flags(a,b, inst, 7);
+		cnt--;
+	}
 }
 
 
-void	push_swap(t_stack *a, t_stack *b, t_stack *instructions, t_mos ms)
+int cnt_inst(t_stack a, t_stack b, t_stack_node *curr)
+{
+	t_stack *tmp_inst;
+
+	tmp_inst = create_stack();
+	move_node_to_a(&a, &b, tmp_inst, curr);
+	sort_a(&a, &b, tmp_inst);
+
+	return (tmp_inst->cnt);
+}
+
+
+void	b_to_a(t_stack *a, t_stack *b, t_stack *inst)
+{
+	t_stack_node *tmp;
+	t_stack_node *min_node;
+	int i;
+	int min;
+	int cnt;
+
+	min = 2147483647;
+	i = 1;
+	tmp = b->top;
+	while (tmp)
+	{
+		cnt = cnt_inst(*a, *b,tmp);
+		if (min < cnt)
+		{
+			min = cnt;
+			min_node = tmp;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	move_node_to_a(a, b, inst, min_node);
+	sort_a(a, b, inst);
+}
+
+
+void	push_swap(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	int flag;
 
-	while (cnt_element(a) > 3 && !is_sorted(a))
-		until_three(&a, &b, ms);
+	while (a->cnt > 3 && !is_sorted(a))
+		until_three(a, b, inst, bs);
 	while (!is_sorted(a))
 	{
-		if (a->data > a->next->data && a->data > a->next->next->data)
+		if (a->top->data > a->top->next->data && a->top->data > a->top->next->next->data)
 			flag = 5;
-		else if (a->data > a->next->data && a->data < a->next->next->data)
+		else if (a->top->data > a->top->next->data && a->top->data < a->top->next->next->data)
 			flag = 1;
 		else
 			flag = 7;
-		operation_flags(a, b, instructions, flag);
+		operation_flags(a, b, inst, flag);
 	}
 	while (b)
-	{
-		//플래그 정하고
-		//연산
-		//연산한거 출력
-	}
+		b_to_a(a, b, inst);
 }
 
 
 
 int				main(int argc, char **argv)
 {
-	t_mos ms;
+	t_big_small bs;
 	t_stack *a;
 	t_stack *b;
-	t_stack *instructions;
+	t_stack *inst;
 
+	bs.big = 0;
+	bs.small = 0;
 	if (argc < 2)
 		end_program(0, NULL);
 	a = init_stack(argv);
 	if (is_sorted(a))
 		end_program(1, a);
-	if (stack->cnt == 2)
+	if (a->cnt == 2)
 		write(1, "sa\n", 3);
 	b = create_stack();
-	instructions = create_stack();
-	push_swap(a, b, instructions, ms);
-	display_instruction(instructions);
+	inst = create_stack();
+	push_swap(a, b, inst, bs);
+	check_inst(inst);
+	display_instruction(inst);
 	delete_stack(a);
 	delete_stack(b);
-	delete_stack(instructions);
-	a = NULL;
-	b = NULL;
-	instructions = NULL;
+	delete_stack(inst);
 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	return (0);
 }

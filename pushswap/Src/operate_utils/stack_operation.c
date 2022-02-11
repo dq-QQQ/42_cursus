@@ -74,6 +74,20 @@ void delete_back(t_stack* stack)
     stack->cnt--;
 }
 
+void delete_curr_node(t_stack* stack, t_stack_node **curr)
+{
+    t_stack_node *prev;
+    t_stack_node *next;
+
+    prev = (*curr)->prev;
+    next = (*curr)->next;
+
+    prev->next = next;
+    next->prev = prev;
+    free(*curr);
+    stack->cnt--;
+}
+
 // int main()
 // {
 //     t_stack *ex;
