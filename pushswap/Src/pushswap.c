@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/11 21:19:15 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/12 16:25:43 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	order(t_stack *b, t_stack_node *curr)
 	ret = 1;
 	while (tmp)
 	{
-		if (tmp == curr)
+		if (tmp->data == curr->data)
 			break;
 		ret++;
 		tmp = tmp->next;
@@ -38,7 +38,7 @@ void	move_node_to_a(t_stack *a, t_stack *b, t_stack *inst, t_stack_node *curr)
 	if (idx < (float)(b->cnt) / 2)
 	{
 		tmp = b->top;
-		while (tmp != curr)
+		while (tmp->data != curr->data)
 		{
 			operation_flags(a,b, inst, 6);
 			tmp = tmp->next;
@@ -47,7 +47,7 @@ void	move_node_to_a(t_stack *a, t_stack *b, t_stack *inst, t_stack_node *curr)
 	else
 	{
 		tmp = b->bottom;
-		while (tmp != curr)
+		while (tmp->data != curr->data)
 		{
 			operation_flags(a,b, inst, 8);
 			tmp = tmp->prev;
@@ -79,16 +79,39 @@ void sort_a(t_stack *a, t_stack *b, t_stack *inst)
 	}
 }
 
+t_stack *copy_stack(t_stack *stack)
+{
+	t_stack *ret;
+	t_stack_node *tmp;
+	t_stack_node *last;
 
-int cnt_inst(t_stack a, t_stack b, t_stack_node *curr)
+	if (stack->cnt == 0)
+		return (NULL);
+	ret = create_stack();
+	ret->cnt = stack->cnt;
+	tmp = stack->top;
+	insert_back(ret, stack->top->data);
+	while (stack)
+	{
+		
+	}
+}
+
+int cnt_inst(t_stack *a, t_stack *b, t_stack_node *curr)
 {
 	t_stack *tmp_inst;
+	t_stack *tmp_a;
+	t_stack *tmp_b;
+	t_stack_node *tmp_curr;
+
+	int ret;
 
 	tmp_inst = create_stack();
-	move_node_to_a(&a, &b, tmp_inst, curr);
-	sort_a(&a, &b, tmp_inst);
-
-	return (tmp_inst->cnt);
+	move_node_to_a(tmp_a, tmp_b, tmp_inst, tmp_curr);
+	sort_a(tmp_a, tmp_b, tmp_inst);
+	ret = tmp_inst->cnt;
+	free(tmp_inst);
+	return (ret);
 }
 
 
@@ -105,8 +128,8 @@ void	b_to_a(t_stack *a, t_stack *b, t_stack *inst)
 	tmp = b->top;
 	while (tmp)
 	{
-		cnt = cnt_inst(*a, *b,tmp);
-		if (min < cnt)
+		cnt = cnt_inst(a, b, tmp);
+		if (min > cnt)
 		{
 			min = cnt;
 			min_node = tmp;
