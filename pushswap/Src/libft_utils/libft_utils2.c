@@ -24,18 +24,6 @@ static int	cnt_word(char const *s, char c)
 	return (cnt);
 }
 
-static void	free_malloc(char **ret, size_t word)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < word)
-	{
-		free(*(ret + i));
-		i++;
-	}
-	free(ret);
-}
 
 static int	cut_str(char const *s, char c, char **ret, size_t word)
 {

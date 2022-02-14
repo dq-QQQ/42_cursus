@@ -35,8 +35,21 @@ void sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 
 void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
+	int first_con;
+	int second_con;
+
 	init_big_small(&bs, a);
-	if (bs.big - bs.small >= (a->cnt - 1) / 2)
+	if (bs.big > 20)
+	{
+		first_con = bs.big / 20;
+		second_con = bs.small - 2;
+	}
+	else 
+	{
+		first_con = bs.big - bs.small;
+		second_con = (a->cnt - 1) / 2;
+	}
+	if (first_con >= second_con)
 	{
 		operation_flags(a, b, inst, 3);//pb
 		sort_b(a,b,inst, bs);

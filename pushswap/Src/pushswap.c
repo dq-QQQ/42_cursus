@@ -6,28 +6,11 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 15:20:02 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 16:31:38 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
-
-int	order(t_stack *b, t_stack_node *curr)
-{
-	t_stack_node *tmp;
-	int ret;
-
-	tmp = b->top;
-	ret = 1;
-	while (tmp)
-	{
-		if (tmp->data == curr->data)
-			break;
-		ret++;
-		tmp = tmp->next;
-	}
-	return (ret);
-}
 
 
 void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
@@ -45,7 +28,7 @@ void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	while (1)
 	{
 		init_big_small(&bs, b);
-		if (bs.big <= 2)
+		if (bs.big == 0)
 		{
 			operation_flags(a, b, inst, 4);
 			break ;
@@ -84,10 +67,10 @@ void	push_swap(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 		if (!is_sorted(a))
 			operation_flags(a,b,inst, 1);
 	}
-	
 }
 
 
+#include <stdio.h>
 
 int				main(int argc, char **argv)
 {
@@ -95,6 +78,7 @@ int				main(int argc, char **argv)
 	t_stack *a;
 	t_stack *b;
 	t_stack *inst;
+	int tmp;
 
 	bs.big = 0;
 	bs.small = 0;
@@ -108,6 +92,7 @@ int				main(int argc, char **argv)
 	b = create_stack();
 	inst = create_stack();
 	push_swap(a, b, inst, bs);
+	tmp = inst->cnt;
 	check_inst(inst);
 	display_instruction(inst);
 	delete_stack(a);
