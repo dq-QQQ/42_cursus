@@ -19,11 +19,28 @@ void		init_big_small(t_big_small *bs, t_stack *stack)
 	}
 }
 
+void sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
+{
+	init_big_small(&bs, b);
+	if (b->cnt == 0)
+		return ;
+	if (bs.big != 0)
+	{
+		if (bs.big > bs.small)
+			operation_flags(a, b, inst, 6);
+		else
+			operation_flags(a, b, inst, 2);
+	}
+}
+
 void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	init_big_small(&bs, a);
-	if (bs.big > bs.small)
+	if (bs.big - bs.small >= (a->cnt - 1) / 2)
+	{
 		operation_flags(a, b, inst, 3);//pb
+		sort_b(a,b,inst, bs);
+	}
 	else
 		operation_flags(a, b, inst, 5);//ra
 }

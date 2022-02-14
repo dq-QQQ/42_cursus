@@ -35,6 +35,8 @@ void check_inst(t_stack* stack)
     t_stack_node *curr;
     int flag;
 
+    if (!(stack->cnt))
+        return ;
     curr = stack->top;
     while (curr->next)
     {

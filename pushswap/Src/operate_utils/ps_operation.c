@@ -13,7 +13,8 @@ void switch_data(t_stack *stack)
 	    third = second->next;
 	    second->prev = NULL;
 	    first->next = third;
-	    third->prev = first;
+        if (third)
+	        third->prev = first;
 	    second->next = first;
 	    first->prev = second;
 	    stack->top = second;
