@@ -6,12 +6,11 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 17:18:56 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:52:30 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/pushswap.h"
-
 
 void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
