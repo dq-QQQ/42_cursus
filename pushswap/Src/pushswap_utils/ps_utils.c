@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/11 19:32:21 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:29:40 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_overlap(t_stack *stack, int data)
 	t_stack_node *tmp;
 
 	tmp = stack->top;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
 		if (tmp->data == data)
 			return (1);
@@ -49,18 +49,17 @@ int	is_overlap(t_stack *stack, int data)
 void end_program(int flag, t_stack *stack)
 {
 	if (flag == -1)
-		ft_putstr("non numeric value");
+		ft_putstr("Error\n");
 	else if (flag == -2)
-		ft_putstr("overlap numeric value");
+		ft_putstr("Error\n");
 	else if (flag == 0)
-		ft_putstr("different number of argument");
+		ft_putstr("Error\n");
 	else if (flag == 1)
-		ft_putstr("Already sorted");
+		;
 	else if (flag == -3)
-		ft_putstr("Input number is over than MAXINT");
+		ft_putstr("Error\n");
 	if (stack)
 		delete_stack(stack);
-	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	exit(0);
 }
 

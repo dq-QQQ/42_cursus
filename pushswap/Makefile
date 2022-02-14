@@ -15,7 +15,7 @@ all : push_swap
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 push_swap : $(SRCS_OBJS)
-	$(CC) $(CFLAGS) -o push_swap $(SRCS_OBJS)
+	@$(CC) $(CFLAGS) -o push_swap $(SRCS_OBJS)
 	@echo "complete making execute file"
 
 .PHONY: clean

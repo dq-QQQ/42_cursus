@@ -39,7 +39,7 @@ void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	int second_con;
 
 	init_big_small(&bs, a);
-	if (bs.big > 20)
+	if (bs.big >= 20)
 	{
 		first_con = bs.big / 20;
 		second_con = bs.small - 2;
@@ -51,9 +51,9 @@ void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	}
 	if (first_con >= second_con)
 	{
-		operation_flags(a, b, inst, 3);//pb
+		operation_flags(a, b, inst, 3);
 		sort_b(a,b,inst, bs);
 	}
 	else
-		operation_flags(a, b, inst, 5);//ra
+		operation_flags(a, b, inst, 5);
 }

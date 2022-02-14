@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 16:31:38 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:18:56 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int				main(int argc, char **argv)
 	t_stack *a;
 	t_stack *b;
 	t_stack *inst;
-	int tmp;
 
 	bs.big = 0;
 	bs.small = 0;
@@ -88,16 +87,17 @@ int				main(int argc, char **argv)
 	if (is_sorted(a))
 		end_program(1, a);
 	if (a->cnt == 2)
+	{
 		write(1, "sa\n", 3);
+		return (0);
+	}
 	b = create_stack();
 	inst = create_stack();
 	push_swap(a, b, inst, bs);
-	tmp = inst->cnt;
 	check_inst(inst);
 	display_instruction(inst);
 	delete_stack(a);
 	delete_stack(b);
 	delete_stack(inst);
-	// system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm leaks_result_temp");
 	return (0);
 }

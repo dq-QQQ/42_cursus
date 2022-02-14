@@ -6,39 +6,34 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/11 20:36:42 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:41:01 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSHSWAP_H
+# define PUSHSWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-#include <stdio.h>
 
-typedef	struct		s_stack_node
+typedef	struct	s_stack_node
 {
 	int				data;
 	struct	s_stack_node *prev;
 	struct	s_stack_node	*next;
-}					t_stack_node;
+}				t_stack_node;
 
-typedef	struct		s_stack
+typedef	struct	s_stack
 {
 	int				cnt;
 	struct	s_stack_node *top;
 	struct	s_stack_node *bottom;
 }					t_stack;
 
-
-
 typedef	struct		s_big_small
 {
 	int 			big;
 	int 			small;
 }					t_big_small;
-
-
 
 /*
 ** libft_utils.c
@@ -54,14 +49,11 @@ size_t	    ft_strlen(const char *s);
 char		**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 
-
 /*
 ** libft_utils3.c
 */
 char	*ft_strdup(const char *s1);
 void	ft_putstr(char *s);
-
-
 
 /*
 ** ps_operation.c
@@ -71,7 +63,6 @@ void switch_data(t_stack *stack);
 void rotate_data(t_stack *stack);// ra rb
 void reverse_rotate_data(t_stack *stack);// rra rrb
 void operation_flags(t_stack *a, t_stack *b, t_stack *inst, int flag);
-
 
 /*
 ** stack_operation.c
@@ -88,15 +79,10 @@ t_stack	*create_stack(void);
 void delete_stack(t_stack *stack);
 void clear_stack(t_stack *stack);
 
-
 /*
 ** ps_init_stack.c
 */
 t_stack* init_stack(char **argv);
-
-
-
-
 
 /*
 ** ps_utils.c
@@ -114,14 +100,8 @@ void display_instruction(t_stack *stack);
 void		init_big_small(t_big_small *bs, t_stack *stack);
 void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs);
 
-
 /*
 ** ps_check_inst.c
 */
 void check_inst(t_stack* stack);
-
-
-
-
-
 #endif
