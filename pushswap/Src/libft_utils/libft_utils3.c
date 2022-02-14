@@ -8,8 +8,7 @@ char	*ft_strdup(const char *s1)
 
 	len = ft_strlen(s1);
 	i = 0;
-	if ((ret = (char *)malloc(len + 1)) == 0)
-		return (0);
+	ret = (char *)malloc(len + 1);
 	*(ret + len) = 0;
 	while (i < len)
 	{

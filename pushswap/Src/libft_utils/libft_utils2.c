@@ -24,7 +24,6 @@ static int	cnt_word(char const *s, char c)
 	return (cnt);
 }
 
-
 static int	cut_str(char const *s, char c, char **ret, size_t word)
 {
 	size_t	idx1;
@@ -81,8 +80,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return ((char *)s1);
 	len_1 = ft_strlen(s1);
 	len_2 = ft_strlen(s2);
-	if ((ret = (char *)malloc(len_1 + len_2 + 2)) == 0)
-		return (0);
+	ret = (char *)malloc(len_1 + len_2 + 2);
 	*(ret + len_1 + len_2 + 1) = 0;
 	ft_memcpy(ret, s1, len_1);
 	ret[len_1] = ' ';
