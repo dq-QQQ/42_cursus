@@ -1,12 +1,12 @@
 #include "../../Inc/pushswap.h"
 
-void		init_big_small(t_big_small *bs, t_stack *stack)
+void	init_big_small(t_big_small *bs, t_stack *stack)
 {
+	int				criteria;
+	t_stack_node	*tmp;
+
 	bs->small = 0;
 	bs->big = 0;
-	t_stack_node *tmp;
-	int criteria;
-
 	tmp = stack->top->next;
 	criteria = stack->top->data;
 	while (tmp)
@@ -19,7 +19,7 @@ void		init_big_small(t_big_small *bs, t_stack *stack)
 	}
 }
 
-void sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
+void	sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	init_big_small(&bs, b);
 	if (b->cnt == 0)
@@ -33,10 +33,10 @@ void sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	}
 }
 
-void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
+void	until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
-	int first_con;
-	int second_con;
+	int	first_con;
+	int	second_con;
 
 	init_big_small(&bs, a);
 	if (bs.big >= 20)
@@ -44,7 +44,7 @@ void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 		first_con = bs.big / 20;
 		second_con = bs.small - 2;
 	}
-	else 
+	else
 	{
 		first_con = bs.big - bs.small;
 		second_con = (a->cnt - 1) / 2;
@@ -52,7 +52,7 @@ void until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	if (first_con >= second_con)
 	{
 		operation_flags(a, b, inst, 3);
-		sort_b(a,b,inst, bs);
+		sort_b(a, b, inst, bs);
 	}
 	else
 		operation_flags(a, b, inst, 5);

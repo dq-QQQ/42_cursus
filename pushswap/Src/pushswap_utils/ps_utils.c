@@ -6,16 +6,16 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 18:02:19 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:45:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Inc/pushswap.h"
 
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
-	int curr_data;
-	t_stack_node *tmp_node;
+	int				curr_data;
+	t_stack_node	*tmp_node;
 
 	if (!stack->top->next)
 		return (1);
@@ -34,7 +34,7 @@ int is_sorted(t_stack *stack)
 
 int	is_overlap(t_stack *stack, int data)
 {
-	t_stack_node *tmp;
+	t_stack_node	*tmp;
 
 	tmp = stack->top;
 	while (tmp)
@@ -46,7 +46,7 @@ int	is_overlap(t_stack *stack, int data)
 	return (0);
 }
 
-void end_program(int flag, t_stack *stack)
+void	end_program(int flag, t_stack *stack)
 {
 	if (flag == -1)
 		ft_putstr("Error\n");
@@ -65,14 +65,14 @@ void end_program(int flag, t_stack *stack)
 	exit(0);
 }
 
-void display(int flag)
+void	display(int flag)
 {
-	if (flag == 1)	
+	if (flag == 1)
 		ft_putstr("sa\n");
 	else if (flag == 2)
 		ft_putstr("sb\n");
 	else if (flag == 3)
-		ft_putstr("pb\n");	
+		ft_putstr("pb\n");
 	else if (flag == 4)
 		ft_putstr("pa\n");
 	else if (flag == 5)
@@ -91,17 +91,17 @@ void display(int flag)
 		ft_putstr("rrr\n");
 }
 
-void display_instruction(t_stack *stack)
+void	display_instruction(t_stack *stack)
 {
-	t_stack_node *tmp;
-	int i;
+	t_stack_node	*tmp;
+	int				i;
 
 	i = stack->cnt;
 	tmp = stack->top;
 	while (i-- > 0)
 	{
-        if (tmp->data)
-		    display(tmp->data);
+		if (tmp->data)
+			display(tmp->data);
 		tmp = tmp->next;
 	}
 }

@@ -6,19 +6,17 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:28 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 17:06:44 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:44:09 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Inc/pushswap.h"
 
-
-char *combine_argv(char **argv)
+char	*combine_argv(char **argv)
 {
-	char *ret;
-	char *tmp;
-	int i;
-
+	char	*ret;
+	char	*tmp;
+	int		i;
 
 	if (argv[2] == NULL)
 		ret = ft_strdup(argv[1]);
@@ -34,12 +32,12 @@ char *combine_argv(char **argv)
 			free(tmp);
 		}
 	}
-	return ret;
+	return (ret);
 }
 
-t_stack* init_stack(char **argv)
+t_stack	*init_stack(char **argv)
 {
-	t_stack* ret;
+	t_stack	*ret;
 	char	**parse_num;
 	char	*s;
 	int		i;
