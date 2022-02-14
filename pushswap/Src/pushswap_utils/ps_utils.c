@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:26:49 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 17:29:40 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:02:19 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void end_program(int flag, t_stack *stack)
 		;
 	else if (flag == -3)
 		ft_putstr("Error\n");
+	else if (flag == 2)
+		write(1, "sa\n", 3);
 	if (stack)
 		delete_stack(stack);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 17:52:30 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:07:43 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (b->top->next == NULL)
 	{
-		operation_flags(a,b,inst,4);
+		operation_flags(a, b, inst, 4);
 		return ;
 	}
 	if (b->top->data < b->top->next->data)
-		operation_flags(a,b,inst, 2);
+		operation_flags(a, b, inst, 2);
 	while (1)
 	{
 		init_big_small(&bs, b);
@@ -33,28 +33,28 @@ void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 			break ;
 		}
 		else
-		{
 			operation_flags(a, b, inst, 6);
-			i++;
-		}
+		i++;
 	}
 	while (i--)
 		operation_flags(a, b, inst, 8);
 }
 
-
-
 void	push_swap(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
-	int flag;
+	int	flag;
+	int	second;
+	int	third;
 
 	while (a->cnt > 3 && !is_sorted(a))
 		until_three(a, b, inst, bs);
 	while (!is_sorted(a))
 	{
-		if (a->top->data > a->top->next->data && a->top->data > a->top->next->next->data)
+		second = a->top->next->data;
+		third = a->top->next->next->data;
+		if (a->top->data > second && a->top->data > third)
 			flag = 5;
-		else if (a->top->data > a->top->next->data && a->top->data < a->top->next->next->data)
+		else if (a->top->data > second && a->top->data < third)
 			flag = 1;
 		else
 			flag = 7;
@@ -64,19 +64,16 @@ void	push_swap(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 	{
 		b_to_a(a, b, inst, bs);
 		if (!is_sorted(a))
-			operation_flags(a,b,inst, 1);
+			operation_flags(a, b, inst, 1);
 	}
 }
 
-
-#include <stdio.h>
-
-int				main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_big_small bs;
-	t_stack *a;
-	t_stack *b;
-	t_stack *inst;
+	t_big_small	bs;
+	t_stack		*a;
+	t_stack		*b;
+	t_stack		*inst;
 
 	bs.big = 0;
 	bs.small = 0;
@@ -86,10 +83,7 @@ int				main(int argc, char **argv)
 	if (is_sorted(a))
 		end_program(1, a);
 	if (a->cnt == 2)
-	{
-		write(1, "sa\n", 3);
-		return (0);
-	}
+		end_program(2, a);
 	b = create_stack();
 	inst = create_stack();
 	push_swap(a, b, inst, bs);
