@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 18:07:43 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/15 16:18:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	int	i;
+	int flag;
 
+	flag = 0;
 	i = 0;
 	if (b->top->next == NULL)
 	{
 		operation_flags(a, b, inst, 4);
 		return ;
 	}
-	if (b->top->data < b->top->next->data)
-		operation_flags(a, b, inst, 2);
 	while (1)
 	{
+		if (b->top->data < b->top->next->data)
+			operation_flags(a, b, inst, 2);
 		init_big_small(&bs, b);
+		if (bs.big == 1 && flag == 0)
+		{
+			operation_flags(a, b, inst, 4);
+			flag++;
+			continue ;
+		}
 		if (bs.big == 0)
 		{
 			operation_flags(a, b, inst, 4);
@@ -80,6 +88,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		end_program(0, NULL);
 	a = init_stack(argv);
+	if (a->cnt == 0)
+		end_program(1, a);
 	if (is_sorted(a))
 		end_program(1, a);
 	if (a->cnt == 2)

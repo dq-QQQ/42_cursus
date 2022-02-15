@@ -8,8 +8,8 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "/Users/kyujlee/ho/42_cursus/pushswap/Src/a.out",
-            "args": ["1", "2", "4", "3"],
+            "program": "/Users/kyujlee/42_cursus/pushswap/Src/a.out",
+            "args": ["11 1 6 3 10 7 14 2 5 9 13 12 4 8 15"],
             "cwd": "${workspaceFolder}"
         }
     ]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:59:26 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/15 12:59:27 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/15 18:38:02 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ void	until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	int	first_con;
 	int	second_con;
+	int criteria;
 
 	init_big_small(&bs, a);
-	if (bs.big >= 20)
+	if (bs.big >= 10)
 	{
-		first_con = bs.big / 20;
+		if (a->cnt > 100)
+			criteria =  (a->cnt / 10);
+		else
+			criteria =  (a->cnt / 10);
+		first_con = bs.big / criteria;
 		second_con = bs.small - 2;
 	}
 	else
