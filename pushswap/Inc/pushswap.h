@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:26:52 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/14 17:50:40 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/16 12:36:59 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ void	display_instruction(t_stack *stack);
 */
 
 void	init_big_small(t_big_small *bs, t_stack *stack);
-void	until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs);
+void	sort_b(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs);
+void	init_con(int *first_con, int *second_con, t_big_small bs, t_stack *a);
+int		pa_or_rb(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs);
 
 /*
 ** ps_check_inst.c

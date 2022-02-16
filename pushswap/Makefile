@@ -6,13 +6,13 @@
 #    By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/14 17:50:52 by kyujlee           #+#    #+#              #
-#    Updated: 2022/02/15 18:24:59 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/02/16 10:41:26 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC= gcc
 
-CFLAGS = -Wall -Wextra -Werror -Iinclude -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 SRCS = Src/pushswap.c Src/pushswap_utils/ps_utils.c Src/pushswap_utils/ps_utils2.c  Src/pushswap_utils/ps_init_stack.c Src/pushswap_utils/ps_check_inst.c Src/libft_utils/libft_utils.c Src/libft_utils/libft_utils2.c Src/libft_utils/libft_utils3.c Src/operate_utils/ps_operation.c Src/operate_utils/stack_operation.c Src/operate_utils/stack_operation2.c 
 

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:56:40 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/02/15 16:18:55 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/02/16 12:41:29 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,42 @@
 void	b_to_a(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
 {
 	int	i;
-	int flag;
+	int	pa_cnt;
 
-	flag = 0;
+	pa_cnt = 0;
 	i = 0;
-	if (b->top->next == NULL)
-	{
-		operation_flags(a, b, inst, 4);
-		return ;
-	}
 	while (1)
 	{
-		if (b->top->data < b->top->next->data)
+		if (b->top->next && b->top->data < b->top->next->data)
 			operation_flags(a, b, inst, 2);
 		init_big_small(&bs, b);
-		if (bs.big == 1 && flag == 0)
+		if (bs.big == 1 && pa_cnt++ == 0)
 		{
 			operation_flags(a, b, inst, 4);
-			flag++;
 			continue ;
 		}
-		if (bs.big == 0)
-		{
-			operation_flags(a, b, inst, 4);
+		if (pa_or_rb(a, b, inst, bs) == 4)
 			break ;
-		}
-		else
-			operation_flags(a, b, inst, 6);
 		i++;
 	}
 	while (i--)
 		operation_flags(a, b, inst, 8);
+}
+
+void	until_three(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
+{
+	int	first_con;
+	int	second_con;
+
+	init_big_small(&bs, a);
+	init_con(&first_con, &second_con, bs, a);
+	if (first_con >= second_con)
+	{
+		operation_flags(a, b, inst, 3);
+		sort_b(a, b, inst, bs);
+	}
+	else
+		operation_flags(a, b, inst, 5);
 }
 
 void	push_swap(t_stack *a, t_stack *b, t_stack *inst, t_big_small bs)
