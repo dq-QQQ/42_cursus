@@ -36,6 +36,13 @@ typedef struct s_rules
     
 }				t_rules;
 
+typedef struct s_fork
+{
+    int i;
+    int state;
+    pthread_mutex_t	mutex_id;
+}				t_fork;
+
 typedef struct s_philo
 {
 	int				i;
@@ -46,21 +53,14 @@ typedef struct s_philo
 	pthread_t		thread_id;
 }				t_philo;
 
-typedef struct s_fork
-{
-    int i;
-    int state;
-    pthread_mutex_t	mutex_id;
-}				t_fork;
-
 typedef struct s_info
 {
     int             dead_flag;
     pthread_mutex_t death_mutex_id;
     t_time          time;
 	t_rules	        rules;
+    t_fork			*forks;
 	t_philo			*philos;
-	t_fork			*forks;
 }				t_info;
 
 enum e_state
@@ -76,7 +76,18 @@ enum e_state
     DEAD,
 };
 
-
+/*
+** utils1.c --- related to libft
+*/
 int			ft_atoi(const char *str);
+
+/*
+** init.c --- related to init_info
+*/
+void init_time(t_info *info);
+void init_rules(t_info *info, char **argv);
+void init_forks(t_info *info);
+void init_philos(t_info *info);
+
 
 #endif

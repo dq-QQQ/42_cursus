@@ -14,17 +14,11 @@
 
 void init_info(t_info *info, char **argv)
 {
-	struct timeval  tv;
-	
 	info->dead_flag = EVERYONE_ALIVE;
-	pthread_mutex_init(&info->death_mutex_id, NULL);
-	gettimeofday(&tv, NULL);
-	info->time.start_time_s = tv.tv_sec;
-	info->time.start_time_us = tv.tv_usec;
+	init_time(info);
 	init_rules(info, argv);
-	init_philos(info);
 	init_forks(info);
-	set_forks(info);
+	init_philos(info);
 }
 
 int main(int argc, char **argv)
@@ -36,8 +30,8 @@ int main(int argc, char **argv)
 	else
 	{
 		init_info(&info, argv);
-		philosophers(&info);
-		free_info(&info);
+		//philosophers(&info);
+		//free_info(&info);
 	}
 	return (0);
 }
