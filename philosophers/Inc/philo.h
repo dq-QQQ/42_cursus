@@ -55,6 +55,7 @@ typedef struct s_philo
 
 typedef struct s_info
 {
+    int             curr_i;
     int             dead_flag;
     pthread_mutex_t death_mutex_id;
     t_time          time;

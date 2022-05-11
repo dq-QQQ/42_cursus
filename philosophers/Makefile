@@ -14,7 +14,7 @@ CC= gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = Src/philo.c Src/utils1.c
+SRCS = Src/philo.c Src/utils1.c Src/init.c
 
 SRCS_OBJS = $(SRCS:.c=.o)
 
