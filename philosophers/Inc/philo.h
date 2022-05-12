@@ -16,9 +16,10 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <pthread.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+typedef struct s_info t_info;
 
 typedef struct s_time
 {
@@ -36,32 +37,26 @@ typedef struct s_rules
     
 }				t_rules;
 
-typedef struct s_fork
-{
-    int i;
-    int state;
-    pthread_mutex_t	mutex_id;
-}				t_fork;
-
 typedef struct s_philo
 {
-	int				i;
-	int				eat_cnt;
-    int				last_eating_time;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
-	pthread_t		thread_id;
+	int				        id;
+	int				        eat_cnt;
+	pthread_mutex_t			*left_fork;
+	pthread_mutex_t			*right_fork;
+	pthread_t		        philo_thread;
+    t_info                  *info;
 }				t_philo;
 
 typedef struct s_info
 {
-    int             curr_i;
-    int             dead_flag;
-    pthread_mutex_t death_mutex_id;
-    t_time          time;
-	t_rules	        rules;
-    t_fork			*forks;
-	t_philo			*philos;
+    int                 stop_flag;
+    int                 eating_done_cnt;
+    pthread_t           monitor;
+    t_time              time;
+	t_rules	            rules;
+    pthread_mutex_t	    *forks;
+    int                 *state;
+	t_philo			    *philos;
 }				t_info;
 
 enum e_state
@@ -70,10 +65,8 @@ enum e_state
 	THINK,
 	SLEEP,
     FORK,
-    FORK_ON,
-    FORK_OFF,
-    COMPLETE_EATING,
     EVERYONE_ALIVE,
+    COMPLETE_EATING,
     DEAD,
 };
 
