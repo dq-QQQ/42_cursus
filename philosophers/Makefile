@@ -12,9 +12,14 @@
 
 CC= gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS = Src/philo.c Src/utils1.c Src/init.c
+SRCS = Src/philo.c \
+	   Src/init.c \
+	   Src/philo_func.c \
+	   Src/monitoring.c \
+	   Src/utils1.c \
+	   Src/utils2.c 
 
 SRCS_OBJS = $(SRCS:.c=.o)
 

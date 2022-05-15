@@ -12,14 +12,33 @@
 
 #include "../Inc/philo.h"
 
+void philosophers(t_info *info)
+{
+	int	i;
+
+	i = -1;
+	while (++i < info->rules.philo_num)
+	{
+		pthread_create(&info->philos[i].philo_thread, NULL, philo_func, &info->philos[i]);
+		pthread_create(&info->philos[i].dead_monitor, NULL, dead_monitoring, &info->philos[i]);
+		pthread_detach(info->philos[i].philo_thread);
+		pthread_detach(info->philos[i].dead_monitor);
+	}
+	if (info->rules.least_eat != -1)
+	{
+		pthread_create(&info->eating_done_monitor, NULL, eating_done_monitoring, info);
+		pthread_detach(info->eating_done_monitor);
+	}
+}
+
 void init_info(t_info *info, char **argv)
 {
-	info->stop_flag = EVERYONE_ALIVE;
 	info->eating_done_cnt = 0;
+	info->philo_state = EVERYONE_ALIVE;
 	init_time(info);
 	init_rules(info, argv);
-	init_pointers(info);
-	init_data(info);
+	init_forks(info);
+	init_philos(info);
 }
 
 int main(int argc, char **argv)
@@ -31,7 +50,9 @@ int main(int argc, char **argv)
 	else
 	{
 		init_info(&info, argv);
-		// philosophers(&info);
+		philosophers(&info);
+		while (info.philo_state == EVERYONE_ALIVE)
+			usleep(100);
 		// free_info(&info);
 	}
 	return (0);

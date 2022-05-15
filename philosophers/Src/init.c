@@ -33,14 +33,12 @@ void init_rules(t_info *info, char **argv)
 		info->rules.least_eat = ft_atoi(argv[5]);
 }
 
-void init_pointer(t_info *info)
+void	init_forks(t_info *info)
 {
-	int	i;
+	int i;
 
 	i = -1;
-	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->rules.philo_num);
 	info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * info->rules.philo_num);
-	info->state = (int *)malloc(sizeof(int) * info->rules.philo_num);
 	while (++i < info->rules.philo_num)
 		pthread_mutex_init(&info->forks[i], NULL);
 }
@@ -50,16 +48,14 @@ void init_philos(t_info *info)
 	int	i;
 
 	i = -1;
+	info->philos = (t_philo *)malloc(sizeof(t_philo) * info->rules.philo_num);
 	while (++i < info->rules.philo_num)
 	{
-		if (i % 2 || i == info->rules.philo_num - 1)
-			info->state[i] = 0;
-		else
-			info->state[i] = 1;
 		info->philos[i].id = i;
 		info->philos[i].eat_cnt = 0;
-		info->philos[i].left_fork = &(info->forks[i]);
-		info->philos[i].right_fork = &(info->forks[(i + 1) % info->rules.philo_num]);
-		info->philos->info = info;
+		info->philos[i].last_eating_time = 0;
+		info->philos[i].left_fork = &info->forks[i];
+		info->philos[i].right_fork = &info->forks[(i + 1) % info->rules.philo_num];
+		info->philos[i].info = info;
 	}
 }
