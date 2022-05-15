@@ -1,34 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitoring.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/15 18:38:03 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/05/15 18:39:47 by kyujlee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Inc/philo.h"
 
-void *dead_monitoring(void *data)
+void	*dead_monitoring(void *data)
 {
-	int i;
-    t_philo *philo;
+	t_philo	*philo;
 
-    philo = (t_philo *)data;
-    while (philo->info->philo_state == EVERYONE_ALIVE)
-    {
-        i = -1;
-        while (++i < philo->info->rules.philo_num)
-        {
-            if (philo->last_eating_time + philo->info->rules.time_to_die 
-                <= curr_time(philo->info))
-            {
-                if (philo->info->philo_state != EVERYONE_ALIVE)
-                    break;
-                philo->info->philo_state = DEAD;
-                printf("%d\t%d %s\n", curr_time(philo->info), philo->id + 1, "died");
-                break;
-            }
-        }
-        usleep(500);
-    }
-    return (NULL);
+	philo = (t_philo *)data;
+	while (philo->info->philo_state == EVERYONE_ALIVE)
+	{
+		if (philo->last_eating_time + philo->info->rules.time_to_die
+			<= curr_time(philo->info))
+		{
+			philo->info->philo_state = DEAD;
+			printf("%d\t%d %s\n", curr_time(philo->info), philo->id + 1, "died");
+			break ;
+		}
+		usleep(500);
+	}
+	return (NULL);
 }
 
-void *eating_done_monitoring(void *data)
+void	*eating_done_monitoring(void *data)
 {
-	t_info		*info;
+	t_info	*info;
 
 	info = (t_info *)data;
 	while (info->eating_done_cnt != info->rules.philo_num)

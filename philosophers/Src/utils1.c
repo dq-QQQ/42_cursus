@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 00:36:07 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/04/30 00:36:10 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/05/15 18:44:59 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	skip(const char *str, int *i, int *sign)
 	}
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -36,18 +36,7 @@ int			ft_atoi(const char *str)
 	skip(str, &i, &sign);
 	while ('0' <= str[i] && str[i] <= '9' && str[i])
 	{
-		if ((ret = ret * 10 + str[i] - '0') > 2147483647)
-		{
-			if (ret == 2147483648)
-				return (-2147483648);
-			else
-			{
-				if (sign == -1)
-					return (0);
-				else
-					return (-1);
-			}
-		}
+		ret = ret * 10 + str[i] - '0';
 		i++;
 	}
 	return (sign * (int)ret);
