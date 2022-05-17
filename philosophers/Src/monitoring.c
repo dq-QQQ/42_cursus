@@ -19,6 +19,7 @@ void	*dead_monitoring(void *data)
 	philo = (t_philo *)data;
 	while (philo->info->philo_state == EVERYONE_ALIVE)
 	{
+		pthread_mutex_lock(&philo->dying_and_eating);
 		if (philo->last_eating_time + philo->info->rules.time_to_die
 			<= curr_time(philo->info))
 		{
@@ -26,6 +27,7 @@ void	*dead_monitoring(void *data)
 			printf("%d\t%d %s\n", curr_time(philo->info), philo->id + 1, "died");
 			break ;
 		}
+		pthread_mutex_unlock(&philo->dying_and_eating);
 		usleep(500);
 	}
 	return (NULL);

@@ -23,6 +23,7 @@ void	*philo_pickup(t_philo *philo)
 
 void	*philo_eating(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->dying_and_eating);
 	philo->eat_cnt++;
 	if (philo->eat_cnt == philo->info->rules.least_eat)
 		philo->info->eating_done_cnt++;
@@ -32,6 +33,7 @@ void	*philo_eating(t_philo *philo)
 		philo->info->rules.time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(&philo->dying_and_eating);
 	return (philo_sleeping);
 }
 
@@ -56,7 +58,7 @@ void	*philo_func(void *data)
 
 	philo = (t_philo *)data;
 	func = philo_pickup;
-	if (philo->id % 2 == 1)
+	if (philo->id % 2)
 		usleep(500);
 	while (philo->info->philo_state == EVERYONE_ALIVE)
 		func = func(philo);

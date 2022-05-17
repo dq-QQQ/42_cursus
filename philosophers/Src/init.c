@@ -58,6 +58,7 @@ void	init_philos(t_info *info)
 		info->philos[i].left_fork = &info->forks[i];
 		info->philos[i].right_fork = &info->forks[(i + 1)
 			% info->rules.philo_num];
+		pthread_mutex_init(&info->philos[i].dying_and_eating, NULL);
 		info->philos[i].info = info;
 	}
 }

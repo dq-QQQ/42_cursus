@@ -43,6 +43,7 @@ typedef struct s_philo
 	long			last_eating_time;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	dying_and_eating;
 	pthread_t		philo_thread;
 	pthread_t		dead_monitor;
 	t_info			*info;

@@ -42,7 +42,7 @@ void	free_info(t_info *info)
 	while (++i < info->rules.philo_num)
 	{
 		pthread_mutex_destroy(&info->forks[i]);
-		free(&info->philos[i]);
+		pthread_mutex_destroy(&info->philos[i].dying_and_eating);
 	}
 	free(info->philos);
 }
