@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/28 23:49:43 by kyujlee           #+#    #+#              #
-#    Updated: 2022/06/29 01:23:08 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/06/30 13:36:59 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,16 @@ SRCS = contact.cpp phonebook.cpp main.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
+NAME = phonebook
+
 .PHONY: all
-all : phonebook
+all : $(NAME)
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-phonebook : $(SRCS_OBJS)
-	@$(CC) $(CFLAGS) -o phonebook $(SRCS_OBJS)
+$(NAME) : $(SRCS_OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS_OBJS)
 	@echo "complete making execute file"
 
 .PHONY: clean
@@ -34,7 +36,7 @@ clean :
 
 .PHONY: fclean
 fclean : clean
-	@rm -rf phonebook
+	@rm -rf $(NAME)
 	@echo "clean object file and execute file"
 
 .PHONY: re

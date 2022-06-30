@@ -6,11 +6,23 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 00:18:34 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/29 01:28:46 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:35:01 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+int check_flag()
+{
+    if (std::cin.eof() || std::cin.fail())
+	{
+		std::cin.clear();
+		clearerr(stdin);
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return 1;
+	}
+    return 0;
+}
 
 int main(int argc , char **argv)
 {
@@ -22,6 +34,8 @@ int main(int argc , char **argv)
         std::cout << "COMMAND : ";
         std::cin >> cmd;
         std::cout << std::endl;
+        if (check_flag())
+            continue;
         if (cmd == "ADD")
             pb.add();
         else if (cmd == "SEARCH")
