@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 14:58:26 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/30 16:43:30 by kyujlee          ###   ########.fr       */
+/*   Created: 2022/06/30 14:58:31 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/06/30 18:23:53 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
-int main()
+class Zombie
 {
-    Zombie *zom;
-    int idx = 4;
+private:
+    std::string name;
+public:
+    void set_name(std::string name);
+    void announce() const;
+};
 
-    zom = zombieHorde(idx, "kyujlee");
-    for(int i = 0; i < idx ; i++)
-        zom[i].announce();
-    delete []zom;
-    
-}
+Zombie* zombieHorde( int N, std::string name );

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 14:58:26 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/30 16:43:30 by kyujlee          ###   ########.fr       */
+/*   Created: 2022/06/30 18:47:26 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/06/30 19:13:19 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include "Weapon.hpp"
 
-int main()
+class HumanA
 {
-    Zombie *zom;
-    int idx = 4;
-
-    zom = zombieHorde(idx, "kyujlee");
-    for(int i = 0; i < idx ; i++)
-        zom[i].announce();
-    delete []zom;
-    
-}
+private:
+    std::string name;
+    Weapon &weapon_type;
+public:
+    HumanA(std::string name, Weapon &weapon);
+    void attack() const;
+};

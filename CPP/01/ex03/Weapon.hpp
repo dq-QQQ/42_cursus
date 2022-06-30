@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 14:58:26 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/30 16:43:30 by kyujlee          ###   ########.fr       */
+/*   Created: 2022/06/30 18:39:00 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/06/30 18:46:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
-int main()
+class Weapon
 {
-    Zombie *zom;
-    int idx = 4;
-
-    zom = zombieHorde(idx, "kyujlee");
-    for(int i = 0; i < idx ; i++)
-        zom[i].announce();
-    delete []zom;
-    
-}
+private:
+    std::string weapon;
+public:
+    Weapon(std::string str);
+    const std::string &getType() const;
+    void setType(std::string weapon_type);
+};

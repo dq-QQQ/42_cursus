@@ -5,27 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/28 22:39:12 by kyujlee           #+#    #+#              #
-#    Updated: 2022/06/28 23:45:32 by kyujlee          ###   ########.fr        #
+#    Created: 2022/06/30 14:06:43 by kyujlee           #+#    #+#              #
+#    Updated: 2022/06/30 14:51:22 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC= c++
+CXX= c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = megaphone.cpp
+SRCS = Zombie.cpp randomChump.cpp newZombie.cpp main.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
+NAME = zombie
+
 .PHONY: all
-all : megaphone
+all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-megaphone : $(SRCS_OBJS)
-	@$(CC) $(CFLAGS) -o megaphone $(SRCS_OBJS)
+$(NAME) : $(SRCS_OBJS)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(SRCS_OBJS)
 	@echo "complete making execute file"
 
 .PHONY: clean
@@ -34,7 +36,7 @@ clean :
 
 .PHONY: fclean
 fclean : clean
-	@rm -rf megaphone
+	@rm -rf $(NAME)
 	@echo "clean object file and execute file"
 
 .PHONY: re

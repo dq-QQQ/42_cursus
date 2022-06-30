@@ -5,20 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/30 14:57:59 by kyujlee           #+#    #+#              #
-#    Updated: 2022/06/30 14:58:16 by kyujlee          ###   ########.fr        #
+#    Created: 2022/06/30 18:34:48 by kyujlee           #+#    #+#              #
+#    Updated: 2022/06/30 18:36:09 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 CXX= c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Zombie.cpp zombieHorde.cpp main.cpp
+SRCS = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
-NAME = zombie
+NAME = game
 
 .PHONY: all
 all : $(NAME)

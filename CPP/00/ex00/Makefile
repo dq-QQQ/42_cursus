@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/30 14:57:59 by kyujlee           #+#    #+#              #
-#    Updated: 2022/06/30 14:58:16 by kyujlee          ###   ########.fr        #
+#    Created: 2022/06/28 22:39:12 by kyujlee           #+#    #+#              #
+#    Updated: 2022/06/30 14:50:16 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,18 @@ CXX= c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Zombie.cpp zombieHorde.cpp main.cpp
+SRCS = megaphone.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
-NAME = zombie
-
 .PHONY: all
-all : $(NAME)
+all : megaphone
 
 %.o : %.c
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(NAME) : $(SRCS_OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(NAME) $(SRCS_OBJS)
+megaphone : $(SRCS_OBJS)
+	@$(CXX) $(CXXFLAGS) -o megaphone $(SRCS_OBJS)
 	@echo "complete making execute file"
 
 .PHONY: clean
@@ -36,7 +34,7 @@ clean :
 
 .PHONY: fclean
 fclean : clean
-	@rm -rf $(NAME)
+	@rm -rf megaphone
 	@echo "clean object file and execute file"
 
 .PHONY: re

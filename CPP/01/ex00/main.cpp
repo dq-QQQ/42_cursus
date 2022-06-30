@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 14:58:26 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/30 16:43:30 by kyujlee          ###   ########.fr       */
+/*   Created: 2022/06/30 14:29:55 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/06/30 14:55:32 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 int main()
 {
     Zombie *zom;
-    int idx = 4;
 
-    zom = zombieHorde(idx, "kyujlee");
-    for(int i = 0; i < idx ; i++)
-        zom[i].announce();
-    delete []zom;
-    
+    // in heap
+    zom = newZombie("kyujlee in heap");
+    zom->announce();
+    delete zom;
+
+    // in stack
+    randomChump("kyujlee in stack");
 }
