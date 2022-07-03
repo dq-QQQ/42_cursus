@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 16:08:15 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/03 17:04:03 by kyujlee          ###   ########.fr       */
+/*   Created: 2022/07/03 17:13:01 by kyujlee           #+#    #+#             */
+/*   Updated: 2022/07/03 17:19:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
+    if (argc != 2)
+        return 0;
     Harl h;
-    std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-    for (int i = 0; i < 4 ; i++)
-        h.complain(levels[i]);
+    h.complain(argv[1]);
 }

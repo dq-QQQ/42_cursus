@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/03 16:04:34 by kyujlee           #+#    #+#              #
-#    Updated: 2022/07/03 17:11:18 by kyujlee          ###   ########.fr        #
+#    Created: 2022/07/03 17:11:58 by kyujlee           #+#    #+#              #
+#    Updated: 2022/07/03 17:22:57 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 CXX= c++
 
@@ -18,7 +19,7 @@ SRCS = Harl.cpp main.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
-NAME = Harl
+NAME = harlFilter
 
 .PHONY: all
 all : $(NAME)
