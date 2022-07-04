@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:15:23 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/03 17:22:18 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/04 21:09:49 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,31 @@ void Harl::error()
 void Harl::complain( std::string level )
 {
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void (Harl::*f[4])() = 
-    {
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error,
-	};
 
+	int flag = -1;
 	for(int i = 0 ; i < 4 ; i++)
 		if (levels[i] == level)
         {
-            (this->*f[i])();
-            return ;
+            flag = i;
+			break ;
         }
-	std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+
+	switch (flag) {
+		case -1 :
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+		case 0 :
+			this->debug();
+			std::cout << std::endl;
+		case 1 :
+			this->info();
+			std::cout << std::endl;
+		case 2 :
+			this->warning();
+			std::cout << std::endl;
+		case 3 :
+			this->error();
+			std::cout << std::endl;
+	}
+	
 }
