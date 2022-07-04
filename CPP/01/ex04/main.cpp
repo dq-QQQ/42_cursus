@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:47:21 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/06/30 20:27:18 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/04 00:30:42 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void replace_text(std::string filename, std::string text_in_file, std::string s1
 
     while ((index = text_in_file.find(s1, index)) != -1)
     {
-        text_in_file.erase(index, s1.length());
+        text_in_file.erase(index, s1.size());
         text_in_file.insert(index, s2);
-        index += s2.length();
+        index += s2.size();
     }
     file.open(filename + ".replace", std::ios::out);
     file << text_in_file;
