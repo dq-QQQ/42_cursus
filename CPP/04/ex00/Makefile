@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 14:45:37 by kyujlee           #+#    #+#              #
-#    Updated: 2022/07/05 22:17:06 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/07/06 23:14:02 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ NAME = a.out
 .PHONY: all
 all : $(NAME)
 
-%.o : %.c
+%.o : %.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME) : $(SRCS_OBJS)

@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:49:16 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/05 22:09:19 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/06 23:42:18 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
     Dog& operator=(const Dog& rhs);
     virtual ~Dog();
 
-    void makeSound() const;
+    virtual void makeSound() const;
 };
 
 #endif

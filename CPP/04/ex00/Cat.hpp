@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:57:56 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/05 22:09:17 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/06 23:42:12 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
     Cat& operator=(const Cat& rhs);
     virtual ~Cat();
 
-    void makeSound() const;
+    virtual void makeSound() const;
 };
 
 #endif

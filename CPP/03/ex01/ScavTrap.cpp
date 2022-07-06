@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:57:21 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/04 23:03:53 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/06 23:26:55 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void ScavTrap::attack(const std::string &target)
         std::cout << "energy point is zero" << std::endl;
         return ;
     }
-	std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->ad << " points of damage!" << std::endl;
+	std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->ad << " points of damage!" << std::endl;
 	ep--;
 }
 

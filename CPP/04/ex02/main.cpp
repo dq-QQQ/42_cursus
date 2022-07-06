@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:58:59 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/06 00:15:43 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 01:05:24 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "Brain.hpp"
 
 int main() {
-	// const Animal* ani = new Animal();
+	// Animal *ani = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
 
@@ -38,11 +38,6 @@ int main() {
 	for (int i = 0; i < 10; i++)
 		std::cout << i << " : " << animal[i]->getType() << std::endl;
 
-	std::cout << "\n\n--------set brain test--------\n";
-	for (int i = 0; i < 10; i++)
-		animal[i]->getBrain()->setIdeas("ho", 0);
-	for (int i = 0 ; i < 10; i++)
-		std::cout << animal[i]->getBrain()->getIdeas(0) << std::endl;
 	
 	std::cout << "\n\n--------delete test--------\n";
 	for (int i = 0; i < 10; i++)
@@ -50,5 +45,18 @@ int main() {
 		delete animal[i];
 		std::cout << "\n";
 	}
+	
+	Cat c;
+	Cat d (c);
+	Cat e = c;
+
+	std::cout << "\n\n--------deep copy test--------\n";
+	c.setIdeas(0, "ho");
+	d.setIdeas(0, "ho2");
+	e.setIdeas(0, "ho3");
+	c.printIdeas(0);
+	d.printIdeas(0);
+	e.printIdeas(0);
+	
 	return 0;
 }

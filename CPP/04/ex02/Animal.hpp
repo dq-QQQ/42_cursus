@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:56:04 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/06 00:14:13 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 01:04:42 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ public:
 
     virtual void makeSound() const = 0;
     std::string getType() const;
-    virtual Brain *getBrain(void) const = 0;
 };
 
 #endif

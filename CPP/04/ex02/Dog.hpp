@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:49:16 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/05 23:28:02 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 00:48:53 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ public:
     Dog& operator=(const Dog& rhs);
     virtual ~Dog();
 
-    void makeSound() const;
-    virtual Brain *getBrain(void) const;
+    virtual void makeSound() const;
+    void printIdeas(int i) const;
+    void setIdeas(int i, std::string idea);
 };
 
 #endif
