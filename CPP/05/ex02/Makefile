@@ -6,7 +6,7 @@
 #    By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 14:45:37 by kyujlee           #+#    #+#              #
-#    Updated: 2022/07/06 23:14:10 by kyujlee          ###   ########.fr        #
+#    Updated: 2022/07/08 00:15:51 by kyujlee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CXX= c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Animal.cpp Dog.cpp Cat.cpp Brain.cpp main.cpp
+SRCS = ShrubberyCreationForm.cpp Form.cpp Bureaucrat.cpp main.cpp
 
 SRCS_OBJS = $(SRCS:.cpp=.o)
 
