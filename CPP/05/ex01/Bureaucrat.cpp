@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:52:35 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/07 18:21:44 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 23:32:22 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name)
 		this->grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
+Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.getName())
 {
     *this = other;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
-    const_cast<std::string &>(name) = rhs.getName();
+    std::cout << "name must constant" << std::endl;
     this->grade = rhs.getGrade();
 	return *this;
 }
@@ -60,6 +60,14 @@ void Bureaucrat::gradeDown()
     this->grade++;
     if (this->grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+}
+
+void Bureaucrat::signForm(bool is_signed, std::string form_name)
+{
+    if (is_signed)
+		std::cout << this->getName() << " signed " << form_name << std::endl;
+	else
+		std::cout << this->getName() << " couldn’t sign " << form_name << " because ";
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

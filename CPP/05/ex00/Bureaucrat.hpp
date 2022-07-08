@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:37:39 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/07 18:41:27 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 21:14:06 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ public:
     int getGrade() const;
     void gradeUp();
 	void gradeDown();
-
-    void signForm(bool is_signed, std::string form_name);
-
+    
     class GradeTooHighException : public std::exception
     {
     public:

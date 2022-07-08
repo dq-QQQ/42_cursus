@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:19:31 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/07 18:38:58 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/07 23:27:17 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ private:
     const int grade_for_exe;
 public:
     Form();
+    Form(std::string name, int grade_for_sign, int grade_for_exe);
     Form(const Form& other);
     Form& operator=(const Form& rhs);
     ~Form();
@@ -32,8 +33,8 @@ public:
 
     const std::string getName() const;
     bool isSigned() const;
-    const int getGradeForSign() const;
-    const int getGradeForEXE() const;
+    int getGradeForSign() const;
+    int getGradeForEXE() const;
 
 
     class GradeTooHighException : public std::exception

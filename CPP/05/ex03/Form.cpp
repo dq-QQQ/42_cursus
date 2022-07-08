@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:25:01 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/07 23:35:36 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/08 00:07:31 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,9 @@ const char *Form::GradeTooHighException::what() const throw()
 const char *Form::GradeTooLowException::what() const throw()
 {
 	return ("grade is too low");
+}
+
+const char *Form::NoSignedFormException::what() const throw()
+{
+	return ("This form isn't signed yet");
 }
