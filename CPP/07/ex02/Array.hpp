@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:59:11 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/09 22:21:54 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/09 22:55:34 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Array<T>::Array(const Array& other) { *this = other; }
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& rhs)
 {
-    if (this->arr)
+    if (this->size() > 0)
         delete[] this->arr;
     arr =  new T[rhs.size()];
     m_size = rhs.size();
@@ -56,7 +56,6 @@ Array<T>& Array<T>::operator=(const Array& rhs)
         arr[i] = rhs.arr[i];
     return *this;
 }
-
 
 template <typename T>
 Array<T>::~Array()
