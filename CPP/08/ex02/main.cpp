@@ -6,7 +6,7 @@
 /*   By: kyujlee <kyujlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:34:16 by kyujlee           #+#    #+#             */
-/*   Updated: 2022/07/10 15:05:56 by kyujlee          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:57:44 by kyujlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,39 @@ int main()
     std::stack<int> s(mstack);
     return 0;
 }
+
+// #include <list>
+
+// int main()
+// {
+//     MutantStack<int> ms;
+//     std::list<int>	list;
+
+//     ms.push(42);
+//     list.push_back(42);
+
+//     ms.push(43);
+//     list.push_back(43);
+
+//     ms.push(44);
+//     list.push_back(44);
+
+
+//     std::list<int>::iterator l_it = list.begin();
+//     std::list<int>::iterator l_ite = list.end();
+
+//     MutantStack<int>::iterator ms_it = ms.begin();
+//     MutantStack<int>::iterator ms_ite = ms.end();
+
+//     while (l_it != l_ite)
+//     {
+//         std::cout << *l_it << std::endl;
+//         ++l_it;
+//     }
+//     std::cout << std::endl;
+//     while (ms_it != ms_ite)
+//     {
+//         std::cout << *ms_it << std::endl;
+//         ++ms_it;
+//     }
+// }
